@@ -1,0 +1,59 @@
+.navbar {
+  position: relative;
+  margin-left: calc((100vw - 100%) / -2);
+  padding: 0;
+  width: calc(100vw - 9px);
+  overflow: hidden;
+
+  &::before,
+  &::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 32px;
+    background-repeat: no-repeat;
+    background-position: 0 0;
+    background-size: 100%;
+  }
+
+  &::before {
+    left: 0;
+    background-image: linear-gradient(to right, rgba(255,255,255, 1), rgba(255,255,255, 0));
+  }
+
+  &::after {
+    right: 0;
+    background-image: linear-gradient(to left, rgba(255,255,255, 1), rgba(255,255,255, 0));
+  }
+}
+
+.navbar__list {
+  display: grid;
+  grid-auto-flow: column;
+  grid-gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  overflow-x: scroll;
+
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+.navbar__item {
+  padding: 4px 0;
+  min-width: max-content;
+
+  &:first-child {
+    padding-left: 16px;
+  }
+
+  &:last-child {
+    padding-right: 16px;
+  }
+}

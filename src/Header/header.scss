@@ -1,9 +1,39 @@
+.header {
+  @media (max-width: 600px) {
+    display: grid;
+    grid-template-columns: repeat(2, auto);
+    grid-gap: 24px;
+    justify-content: space-between;
+  }
+}
+
+.header__logo-wrap {
+  @media (max-width: 600px) {
+    max-width: max-content;
+  }
+}
+
 .header__logo {
-  width: 48px;
+  width: 48px; 
+}
+
+.header__form {
+  @media (max-width: 600px) {
+    grid-column: 1 / span 2;
+    grid-row: 2 / span 1;
+  }
+}
+
+.header__cart-wrap {
+  @media (max-width: 600px) {
+    justify-self: end;
+    max-width: max-content;
+  }
 }
 
 .header__cart {
   position: relative;
+  display: block;
   width: 48px;
   height: 48px;
   background-repeat: no-repeat;
