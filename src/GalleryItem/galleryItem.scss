@@ -1,19 +1,21 @@
 .gallery-item {
   position: relative;
-  &:hover,
-  &:focus,
-  &:focus-within {
-    .gallery-item__image-wrap::after {
-      opacity: 0.7;
-    }
-
-    .gallery-item__addtocart {
-      opacity: 0.7;
-
-      &:hover,
-      &:focus {
-        opacity: 1;
-        transform: translate(-50%, -50%) scale(1.05);
+  @media (hover: hover) {
+    &:hover,
+    &:focus,
+    &:focus-within {
+      .gallery-item__image-wrap::after {
+        opacity: 0.7;
+      }
+  
+      .gallery-item__addtocart {
+        opacity: 0.7;
+  
+        &:hover,
+        &:focus {
+          opacity: 1;
+          transform: translate(-50%, -50%) scale(1.05);
+        }
       }
     }
   }
@@ -80,29 +82,39 @@
 
 .gallery-item__addtocart {
   position: absolute;
-  top: 50%;
-  left: 50%;
+  bottom: 4px;
+  right: 4px;
   margin: 0;
   padding: 0;
-  width: 30%;
-  height: 30%;
+  width: 25%;
+  height: 25%;
   border: none;
-  border-radius: 0;
-  background-color: transparent;
+  border-radius: 4px;
+  background-color: rgba(255, 255, 255, 0.7);
   background-repeat: no-repeat;
-  background-size: 100%;
   background-position: center;
+  background-size: 70%;
   background-image: url('./cart-plus.svg');
-  opacity: 0;
   filter: invert(1);
-  transform: translate(-50%, -50%);
-  transition: opacity 0.3s ease-in-out, background-color 0.3s ease-in-out, transform 0.2s ease-in-out;
-
-  &:active {
-    transform: translate(-50%, -50%) scale(1);
-  }
-
+  
   &--minus {
     background-image: url('./cart-minus.svg');
+  }
+  
+  @media (hover: hover) {
+    top: 50%;
+    left: 50%;
+    width: 30%;
+    height: 30%;
+    border-radius: 0;
+    background-color: transparent;
+    background-size: 100%;
+    opacity: 0;
+    transform: translate(-50%, -50%);
+    transition: opacity 0.3s ease-in-out, background-color 0.3s ease-in-out, transform 0.2s ease-in-out;
+    
+    &:active {
+      transform: translate(-50%, -50%) scale(1);
+    }
   }
 }

@@ -31,7 +31,7 @@ import { useState, useEffect } from 'react';
 // ];
 
 const API_KEY = '563492ad6f91700001000001647246300ed247b7b6748ac61d528807';
-const GET_URL = 'https://api.pexels.com/v1/curated?page=1&per_page=12';
+const DEFAULT_URL = 'https://api.pexels.com/v1/curated?page=1&per_page=12';
 const SERCH_URL = {
   start: 'https://api.pexels.com/v1/search?query=',
   end: '&page=1&per_page=12',
@@ -48,7 +48,7 @@ const fetchPhotos = async (URL) => {
     if (!response.ok) return console.log('fetch response error');
 
     const data = await response.json();
-    return data.photos;
+    return data;
   }
   catch (error) {
     console.log(error);
@@ -88,8 +88,8 @@ const App = () => {
 
   const setFilter = (name) => {
     const setFilteredPhotos = async () => {
-      const photos = await fetchPhotos(SERCH_URL.start + name + SERCH_URL.end);
-      setPhotos(photos);
+      const data = await fetchPhotos(SERCH_URL.start + name + SERCH_URL.end);
+      setPhotos(data.photos);
       setTags(state => ({ ...state, currentIndex: state.names.findIndex(stateName => stateName === name)}));
     }
     setFilteredPhotos();
@@ -104,7 +104,10 @@ const App = () => {
   };
 
   useEffect(() => {
-    const getPhotos = async () => setPhotos(await fetchPhotos(GET_URL));
+    const getPhotos = async () => {
+      const data = await fetchPhotos(DEFAULT_URL);
+      setPhotos(data.photos);
+    }
     getPhotos();
   },[]);
 
