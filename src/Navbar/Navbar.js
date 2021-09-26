@@ -10,7 +10,7 @@ const Navbar = ({ tags, setTag }) => {
   };
 
   return (
-    <div className='gallery__navbar navbar'>
+    <div className='gallery__navbar navbar mb-3'>
       <ul className='navbar__list'>
         { tags.names.map((tag, index) => {
             const isCurrent = index === tags.currentIndex;

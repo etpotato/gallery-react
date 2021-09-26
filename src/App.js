@@ -73,9 +73,18 @@ const TAG_NAMES = [
 ];
 
 const App = () => {
+  const [cart, setCart] = useState([]);
+  const [tags, setTags] = useState({ names: TAG_NAMES, currentIndex: -1 });
   const [photos, setPhotos] = useState([]);
   const [modal, setModal] = useState({show: false, photo: {}});
-  const [tags, setTags] = useState({ names: TAG_NAMES, currentIndex: -1 });
+
+  const addToCart = (photo) => {
+    setCart(state => [...state, photo]);
+  };
+
+  const removeFromCart = (id) => {
+    setCart(state => state.filter(cartPhoto => cartPhoto.id !== id));
+  }
 
   const setFilter = (name) => {
     const setFilteredPhotos = async () => {
@@ -92,7 +101,7 @@ const App = () => {
 
   const closeModal = () => {
     setModal({show: false, photo: {}});
-  }
+  };
 
   useEffect(() => {
     const getPhotos = async () => setPhotos(await fetchPhotos(GET_URL));
@@ -101,11 +110,11 @@ const App = () => {
 
   return (
     <>
+      <Header cartCount={cart.length} setFilter={setFilter}/>
       <div className='container'>
-        <Header/>
-        <Gallery photos={photos} openModal={openModal} tags={tags} setTag={setFilter}/>
+        <Gallery photos={photos} addToCart={addToCart} removeFromCart={removeFromCart} cart={cart} openModal={openModal} tags={tags} setTag={setFilter}/>
       </div>
-      <Modal modalShow={modal.show} modalPhoto={modal.photo} modalClose={closeModal}/>
+      <Modal modalShow={modal.show} modalPhoto={modal.photo} modalClose={closeModal} addToCart={addToCart} removeFromCart={removeFromCart} cart={cart}/>
     </>
   );
 }
