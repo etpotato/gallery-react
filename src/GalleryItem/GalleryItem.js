@@ -22,7 +22,7 @@ const GalleryItem = ({ photo, addToCart, removeFromCart, isInCart, openModal }) 
   return (
     <li className={'gallery-item col-6 col-md-3 p-1' + (isInCart ? ' gallery-item--in-cart' : '')}>
       <div className='gallery-item__image-wrap rounded'>
-        <img className='gallery-item__image' src={photo.src.large} alt='Photos provided by Pexels'/>
+        <img className='gallery-item__image' src={photo.src.large} alt='Photos provided by Pexels' loading="lazy"/>
       </div>
       <a className='gallery-item__link' onClick={handleLinkClick} href='/'>
         <span className='visually-hidden'>Open in full size</span>

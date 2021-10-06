@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import logo from './logo.svg';
 import './header.scss';
 
@@ -26,17 +27,17 @@ const Header = ({ cartCount, setFilter }) => {
     <header className='header pt-3 pb-3'>
       <div className="container">
         <div className="header__wrap row">
-          <a className='header__logo-wrap col-sm-auto' href='/' aria-label='To main page'>
+          <Link to='/' className='header__logo-wrap col-sm-auto' aria-label='To main page'>
             <img className='header__logo rounded' src={logo} alt='logo' />
-          </a>
+          </Link>
           <form onSubmit={handleSearchSubmit} className='d-flex col header__form'>
             <input onInput={handleSearchInput} value={searchValue} className='form-control me-2' type='search' placeholder='Search' aria-label='Search'></input>
             <button className='btn btn-outline-success' type='submit'>Search</button>
           </form>
           <div className='header__cart-wrap col-sm-auto'>
-            <a className='header__cart position-relative' href='/' aria-label='Your shopping cart'>
+            <Link to='/cart' className='header__cart position-relative'aria-label='Your shopping cart'>
               <span className={'header__badge badge bg-primary' + (cartCount > 0 ? ' header__badge--show' : '') + ( activeCart ? ' header__badge--active' : '')}>{ cartCount > 0 ? cartCount : ''}</span>
-            </a>
+            </Link>
           </div>
         </div>
       </div>

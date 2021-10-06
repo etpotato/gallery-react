@@ -3,6 +3,8 @@ import './modal.scss';
 
 const Modal = ({ modalShow, modalPhoto, modalClose, addToCart, removeFromCart, cart }) => {
   const [imageLoaded, setImageLoaded] = useState(false);
+  
+  const isInCart = cart.some(cartPhoto => cartPhoto.id === modalPhoto.id);
 
   const handleCloseClick = (evt) => {
     evt.preventDefault();
@@ -29,8 +31,7 @@ const Modal = ({ modalShow, modalPhoto, modalClose, addToCart, removeFromCart, c
     evt.target.blur();
   };
   
-  const isInCart = cart.some(cartPhoto => cartPhoto.id === modalPhoto.id);
-
+  
   useEffect(() => {
     document.addEventListener('keydown', handleEsc);
     return () => document.removeEventListener('keydown', handleEsc);
