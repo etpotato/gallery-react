@@ -42,12 +42,11 @@
   }
 }
 
-.cart-item__avg-color {
-  span {
-    display: inline-block;
-    width: 1em;
-    height: 1em;
-  }
+.cart-item__avg-color-tip {
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  border-radius: 2px;
 }
 
 .cart-item__checkbox {

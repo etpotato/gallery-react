@@ -1,7 +1,7 @@
-import Header from './Header/Header';
-import Gallery from './Gallery/Gallery';
-import Modal from './Modal/Modal';
-import Cart from './Cart/Cart';
+import Header from './components/Header/Header';
+import Gallery from './components/Gallery/Gallery';
+import Modal from './components/Modal/Modal';
+import Cart from './components/Cart/Cart';
 import { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
@@ -855,7 +855,7 @@ const mocks = {
 }
 
 const API_KEY = '563492ad6f91700001000001647246300ed247b7b6748ac61d528807';
-const DEFAULT_URL = 'https://api.pexels.com/v1/curated?page=1&per_page=40';
+const DEFAULT_URL = 'https://api.pexels.com/v1/curated?page=1&per_page=20';
 const SERCH_URL = {
   start: 'https://api.pexels.com/v1/search?query=',
   end: '&page=1&per_page=20',
@@ -914,10 +914,6 @@ const App = () => {
     setCart(state => [...state, photo]);
   };
 
-  useEffect(() => {
-    console.log(cart);
-  }, [cart]);
-
   const removeFromCart = (id) => {
     setCart(state => state.filter(cartPhoto => cartPhoto.id !== id));
   }
@@ -940,12 +936,11 @@ const App = () => {
   };
 
   useEffect(() => {
-    // const getPhotos = async () => {
-    //   const data = await fetchPhotos(DEFAULT_URL);
-    //   setPhotos(data.photos);
-    // }
-    // getPhotos();
-    setPhotos(mocks.photos);
+    const getPhotos = async () => {
+      const data = await fetchPhotos(DEFAULT_URL);
+      setPhotos(data.photos);
+    }
+    getPhotos();
   },[]);
 
   return (

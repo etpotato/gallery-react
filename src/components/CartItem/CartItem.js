@@ -13,15 +13,15 @@ const CartItem = ({ photo, openModal, handleRemoveFromCart }) => {
       </div>
       <div className="cart-item__text-wrap">
         <ul className="cart-item__text">
-          <li className="cart-item__text-item cart-item__photographer">Photographer: { photo.photographer }.</li>
+          <li className="cart-item__text-item cart-item__photographer">Photographer: { photo.photographer }</li>
           <li className="cart-item__text-item cart-item__avg-color">
-            Average color: <span style={{ backgroundColor: photo.avg_color }}></span> { photo.avg_color }
+            Average color: <span className='cart-item__avg-color-tip' style={{ backgroundColor: photo.avg_color }}></span> { photo.avg_color }
           </li>
         </ul>
         <button className="btn btn-danger" onClick={() => handleRemoveFromCart(photo.id)} type="button">Remove</button>
       </div>
       <label className="cart-item__checkbox">
-        <input className="cart-item__checkbox-input visually-hidden" checked={checked} onInput={handleCheckbox} type="checkbox"/>
+        <input className="cart-item__checkbox-input visually-hidden" checked={checked} onChange={handleCheckbox} type="checkbox"/>
         <span className="cart-item__checkbox-check"></span>
         <span className="visually-hidden">Choose this photo</span>
       </label>

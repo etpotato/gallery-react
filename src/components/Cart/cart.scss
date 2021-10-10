@@ -2,6 +2,7 @@
   margin: 0;
   padding: 0;
   list-style: none;
+  border-bottom: 1px solid #ced4da;
 
   @media (min-width: 768px) {
     display: grid;
@@ -25,4 +26,12 @@
   @media (min-width: 768px) {
     margin-bottom: 0;
   }
+}
+
+.cart__controls {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  justify-content: flex-end;
 }
