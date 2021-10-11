@@ -16,7 +16,7 @@ const downloadZip = async (cart) => {
   const zip = new JSZip();
   const downloadPromises = cart.map(async (item) => {
     const response = await fetch(item.src.large2x);
-    const imageBlob = await response.blob();
+    const imageBlob = response.blob();
     return zip.file(`${item.photographer}.jpeg`, imageBlob, {binary: true});
   });
   
