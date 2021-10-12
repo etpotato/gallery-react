@@ -1,16 +1,12 @@
 import { useState } from 'react';
+import { useEffect } from 'react/cjs/react.development';
 import './cartItem.scss';
 
-const CartItem = ({ photo, selected, setSelected, openModal, handleRemoveFromCart }) => {
-  const [checked, setChecked] = useState(false);
-  const handleCheckbox = () => {
+const CartItem = ({ photo, handleCartItemCheck, openModal, handleRemoveFromCart }) => {
+  const [checked, setChecked] = useState(photo.checked);
+  const handleCheck = () => {
     setChecked(state => !state);
-    setSelected(selected => {
-      return checked 
-        ? [...selected, photo] 
-        : selected.filter(item => item.id !== photo.id);
-    });
-    console.log(selected);
+    handleCartItemCheck(photo);
   };
   return (
     <li className='cart__item cart-item'>
@@ -27,7 +23,7 @@ const CartItem = ({ photo, selected, setSelected, openModal, handleRemoveFromCar
         <button className="btn btn-danger" onClick={() => handleRemoveFromCart(photo.id)} type="button">Remove</button>
       </div>
       <label className="cart-item__checkbox">
-        <input className="cart-item__checkbox-input visually-hidden" checked={checked} onChange={handleCheckbox} type="checkbox"/>
+        <input className="cart-item__checkbox-input visually-hidden" checked={checked} onChange={handleCheck} type="checkbox"/>
         <span className="cart-item__checkbox-check"></span>
         <span className="visually-hidden">Choose this photo</span>
       </label>

@@ -1,7 +1,6 @@
 import './galleryItem.scss'
 
 const GalleryItem = ({ photo, addToCart, removeFromCart, isInCart, openModal }) => {
-
   const handleLinkClick = (evt) => {
     evt.preventDefault();
     openModal(photo.id);

@@ -40,7 +40,13 @@ const App = () => {
   const [modal, setModal] = useState({show: false, photo: {}});
 
   const addToCart = (photo) => {
-    setCart(state => [...state, photo]);
+    setCart(state => [
+      ...state, 
+      {
+        ...photo,
+        checked: false,
+      }
+    ]);
   };
 
   const removeFromCart = (id) => {
