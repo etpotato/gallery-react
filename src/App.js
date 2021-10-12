@@ -32,6 +32,10 @@ const TAG_NAMES = [
   'Retro',
 ];
 
+// TODO: icons for cart controls
+// TODO: preloaders
+// TODO: infinite scroll in gallery
+
 const App = () => {
   const [cart, setCart] = useState([]);
   const [tags, setTags] = useState({ names: TAG_NAMES, currentIndex: -1 });
