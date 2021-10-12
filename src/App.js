@@ -87,7 +87,7 @@ const App = () => {
         </Route>
         <Route path='/cart'>
           <div className='container'>
-            <Cart cart={cart} openModal={openModal} handleRemoveFromCart={removeFromCart}/>
+            <Cart cart={cart} setCart={setCart} openModal={openModal} handleRemoveFromCart={removeFromCart}/>
           </div>
         </Route>
       </Switch>

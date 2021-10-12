@@ -1,10 +1,16 @@
 import { useState } from 'react';
 import './cartItem.scss';
 
-const CartItem = ({ photo, openModal, handleRemoveFromCart }) => {
+const CartItem = ({ photo, selected, setSelected, openModal, handleRemoveFromCart }) => {
   const [checked, setChecked] = useState(false);
   const handleCheckbox = () => {
     setChecked(state => !state);
+    setSelected(selected => {
+      return checked 
+        ? [...selected, photo] 
+        : selected.filter(item => item.id !== photo.id);
+    });
+    console.log(selected);
   };
   return (
     <li className='cart__item cart-item'>
