@@ -20,7 +20,7 @@ const CartItem = ({ photo, handleCartItemCheck, openModal, handleRemoveFromCart 
             Average color: <span className='cart-item__avg-color-tip' style={{ backgroundColor: photo.avg_color }}></span> { photo.avg_color }
           </li>
         </ul>
-        <button className="btn btn-danger" onClick={() => handleRemoveFromCart(photo.id)} type="button">Remove</button>
+        <button className="btn btn-outline-danger" onClick={() => handleRemoveFromCart(photo.id)} type="button">Remove</button>
       </div>
       <label className="cart-item__checkbox">
         <input className="cart-item__checkbox-input visually-hidden" checked={checked} onChange={handleCheck} type="checkbox"/>

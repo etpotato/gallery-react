@@ -32,11 +32,11 @@ const Header = ({ cartCount, setFilter, searchValue, setSearchValue }) => {
             <img className='header__logo rounded' src={logo} alt='logo' />
           </Link>
           { isMainPage 
-            ? <form onSubmit={handleSearchSubmit} className='d-flex col header__form'>
+            ? <form onSubmit={handleSearchSubmit} className='d-flex col header__text'>
                 <input onInput={handleSearchInput} value={searchValue} className='form-control me-2' type='search' placeholder='Search' aria-label='Search'></input>
                 <button className='btn btn-outline-success' type='submit'>Search</button>
               </form>
-            : <p className='col lead text-center mb-0'>{ cartCount > 0 ? 'Your selected photos' : 'Your cart is empty' }</p>
+            : <p className='col header__text lead text-center mb-0'>{ cartCount > 0 ? 'Your selected photos' : 'Your cart is empty' }</p>
           }
           <div className='header__cart-wrap col-sm-auto'>
             <Link to='/cart' className='header__cart position-relative'aria-label='Your shopping cart'>

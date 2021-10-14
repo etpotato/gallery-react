@@ -53,16 +53,16 @@ const Cart = ({ cart, setCart, openModal, handleRemoveFromCart }) => {
         cart.length > 0 &&
         <ul className='cart__controls'>
           <li className='cart__controls-item'>
-            <button className='cart__button btn btn-warning' onClick={handleRemoveSelected} type='button'>Remove selected</button>
+            <button className='cart__button cart__button--download-all btn btn-success' onClick={handleDownloadAll} type='button'>Download all</button>
           </li>
           <li className='cart__controls-item'>
-            <button className='cart__button btn btn-warning' onClick={handleRemoveAll} type='button'>Remove all</button>
+            <button className='cart__button cart__button--check btn btn-success' onClick={handleDownloadSelected} type='button'>Download selected</button>
           </li>
           <li className='cart__controls-item'>
-            <button className='cart__button btn btn-success' onClick={handleDownloadSelected} type='button'>Download selected</button>
+            <button className='cart__button cart__button--remove-all btn btn-danger' onClick={handleRemoveAll} type='button'>Remove all</button>
           </li>
           <li className='cart__controls-item'>
-            <button className='cart__button btn btn-success' onClick={handleDownloadAll} type='button'>Download all</button>
+            <button className='cart__button cart__button--check btn btn-danger' onClick={handleRemoveSelected} type='button'>Remove selected</button>
           </li>
         </ul>
       }
