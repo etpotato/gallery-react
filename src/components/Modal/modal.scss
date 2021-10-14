@@ -1,4 +1,5 @@
 .modal {
+  align-items: center;
   max-height: 100vh;
 
   &.show {
@@ -19,6 +20,7 @@
 
 .modal__container {
   position: relative;
+  min-height: 0;
 }
 
 .modal__close {
@@ -32,25 +34,17 @@
 }
 
 .modal__image-wrap {
-  @media (max-width: 600px) {
-    position: relative;
-    padding-top: 100%;
-  }
+  display: grid;
+  place-content: center;
+  max-height: calc(100vh - 10rem);
+  overflow: hidden;
 }
 
 .modal__image {
-  width: 100%;
-
-  @media (max-width: 600px) {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
-  // height: 80vh;
-  // object-fit: contain;
+  width: auto;
+  max-width: 100%;
+  height: auto;
+  max-height: 100%;
 }
 
 .modal__header {

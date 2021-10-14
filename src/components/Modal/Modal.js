@@ -48,8 +48,8 @@ const Modal = ({ modalShow, modalPhoto, modalClose, addToCart, removeFromCart, c
             <button onClick={handleCloseClick} className="modal__close btn" type="button" aria-label="Close"></button>
           </div>
           <div className="modal-body modal__body">
-            <div className="modal__image-wrap">
-              <img onLoad={() => setImageLoaded(true)} className="modal__image rounded" src={modalPhoto.src ? modalPhoto.src.landscape : ''} alt="Photos provided by Pexels"/>
+            <div className="modal__image-wrap rounded">
+              <img onLoad={() => setImageLoaded(true)} className="modal__image rounded" src={modalPhoto.src ? modalPhoto.src.large2x : ''} alt="Photos provided by Pexels"/>
             </div>
           </div>
           <div className="modal-footer modal__footer">
