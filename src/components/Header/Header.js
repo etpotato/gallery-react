@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
+import throttle from '../../utils/throttle';
 import logo from './logo.svg';
 import './header.scss';
 
@@ -7,6 +8,7 @@ const BADGE_SCALE_TIME = 100;
 
 const Header = ({ cartCount, setFilter, searchValue, setSearchValue }) => {
   const [activeCart, setActiveCart] = useState(false);
+  const [hideHeader, setHideHeader] = useState(false);
 
   const isMainPage = useLocation().pathname === '/';
 
@@ -24,8 +26,26 @@ const Header = ({ cartCount, setFilter, searchValue, setSearchValue }) => {
     setTimeout(() => setActiveCart(false), BADGE_SCALE_TIME);
   }, [cartCount]);
 
+  let lastScrollY = 0;
+
+  const toggleHeader = (evt) => {
+    const currentY = window.scrollY;
+    const isScrollDown = currentY > lastScrollY;
+    lastScrollY = currentY;
+    setHideHeader(isScrollDown); 
+  };
+
+  const handleScroll = throttle(toggleHeader, 400);
+
+  useEffect(() => {
+    document.addEventListener('scroll', handleScroll);
+    return () => document.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  const hideHeaderClass = hideHeader ? ' header--hide': '';
+
   return (
-    <header className='header pt-3 pb-3'>
+    <header className={'header pt-3 pb-3' + hideHeaderClass}>
       <div className="container">
         <div className="header__wrap row">
           <Link to='/' className='header__logo-wrap col-sm-auto' aria-label='To main page'>

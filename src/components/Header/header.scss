@@ -1,11 +1,22 @@
 .header {
-  position: sticky;
+  position: fixed;
   top: 0;
   left: 0;
   right: 0;
   z-index: 1;
   background-color: #fff;
   box-shadow: 0 2px 24px rgba(0, 0, 0, 0.2);
+
+
+  @media (max-width: 600px) {
+    max-height: 150px;
+    overflow: hidden;
+    transition: max-height 0.3s ease-in-out;
+  
+    &--hide {
+      max-height: 70px;
+    }
+  }
 }
 
 .header__wrap {

@@ -1,6 +1,6 @@
 import './cart.scss';
 import CartItem from '../CartItem/CartItem';
-import downloadZip from '../../helpers/download';
+import downloadZip from '../../utils/download';
 
 const Cart = ({ cart, setCart, openModal, handleRemoveFromCart }) => {
   const handleDownloadAll = (evt) => {

@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-import fetchPhotos from './helpers/api';
+import fetchPhotos from './utils/api';
 
 import Header from './components/Header/Header';
 import Gallery from './components/Gallery/Gallery';
@@ -32,7 +32,7 @@ const TAG_NAMES = [
   'Retro',
 ];
 
-// TODO: icons for cart controls
+// TODO: hide header text on scroll in mobile
 // TODO: preloaders
 // TODO: infinite scroll in gallery
 
@@ -91,12 +91,12 @@ const App = () => {
       <Header cartCount={cart.length} setFilter={setFilter} searchValue={searchValue} setSearchValue={setSearchValue}/>
       <Switch>
         <Route path='/' exact>
-          <div className='container'>
+          <div className='container container--main-wrap'>
             <Gallery photos={photos} addToCart={addToCart} removeFromCart={removeFromCart} cart={cart} openModal={openModal} tags={tags} setTag={setFilter}/>
           </div>
         </Route>
         <Route path='/cart'>
-          <div className='container'>
+          <div className='container container--main-wrap'>
             <Cart cart={cart} setCart={setCart} openModal={openModal} handleRemoveFromCart={removeFromCart}/>
           </div>
         </Route>
