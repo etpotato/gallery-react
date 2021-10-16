@@ -42,6 +42,19 @@
   }
 }
 
+.cart-item__link {
+  color: inherit;
+  text-decoration-color: #198754;
+  
+  &:active {
+    color: #198754;
+  }
+
+  &:visited {
+    color: inherit;    
+  }
+}
+
 .cart-item__avg-color-tip {
   display: inline-block;
   width: 1em;
