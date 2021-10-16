@@ -10,7 +10,8 @@ const Header = ({ cartCount, setFilter, searchValue, setSearchValue }) => {
   const [activeCart, setActiveCart] = useState(false);
   const [hideHeader, setHideHeader] = useState(false);
 
-  const isMainPage = useLocation().pathname === '/';
+  const { pathname } = useLocation();
+  const isMainPage = pathname === '/';
 
   const handleSearchSubmit = (evt) => {
     evt.preventDefault();
@@ -25,6 +26,13 @@ const Header = ({ cartCount, setFilter, searchValue, setSearchValue }) => {
     if (cartCount > 0) setActiveCart(true);
     setTimeout(() => setActiveCart(false), BADGE_SCALE_TIME);
   }, [cartCount]);
+
+  useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'instant',
+    });
+  }, [pathname])
 
   let lastScrollY = 0;
 
@@ -60,7 +68,7 @@ const Header = ({ cartCount, setFilter, searchValue, setSearchValue }) => {
           }
           <div className='header__cart-wrap col-sm-auto'>
             <Link to='/cart' className='header__cart position-relative'aria-label='Your shopping cart'>
-              <span className={'header__badge badge bg-primary' + (cartCount > 0 ? ' header__badge--show' : '') + ( activeCart ? ' header__badge--active' : '')}>{ cartCount > 0 ? cartCount : ''}</span>
+              {<span className={'header__badge badge bg-primary' + (cartCount > 0 ? ' header__badge--show' : '') + ( activeCart ? ' header__badge--active' : '')}>{ cartCount > 0 && cartCount}</span>}
             </Link>
           </div>
         </div>

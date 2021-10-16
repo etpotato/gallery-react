@@ -9,9 +9,9 @@
 
 
   @media (max-width: 600px) {
-    max-height: 150px;
+    max-height: 140px;
     overflow: hidden;
-    transition: max-height 0.3s ease-in-out;
+    transition: max-height 0.4s ease-in-out;
   
     &--hide {
       max-height: 70px;
