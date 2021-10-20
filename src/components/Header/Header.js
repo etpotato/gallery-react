@@ -36,9 +36,9 @@ const Header = ({ cartCount, setFilter, searchValue, setSearchValue }) => {
 
   let lastScrollY = 0;
 
-  const toggleHeader = (evt) => {
+  const toggleHeader = () => {
     const currentY = window.scrollY;
-    const isScrollDown = currentY > lastScrollY;
+    const isScrollDown = currentY > 200 ? currentY > lastScrollY : false;
     lastScrollY = currentY;
     setHideHeader(isScrollDown); 
   };
@@ -46,8 +46,8 @@ const Header = ({ cartCount, setFilter, searchValue, setSearchValue }) => {
   const handleScroll = throttle(toggleHeader, 400);
 
   useEffect(() => {
-    document.addEventListener('scroll', handleScroll);
-    return () => document.removeEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   const hideHeaderClass = hideHeader ? ' header--hide': '';
