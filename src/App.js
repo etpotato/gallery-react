@@ -91,14 +91,10 @@ const App = () => {
       <Header cartCount={cart.length} setFilter={setFilter} searchValue={searchValue} setSearchValue={setSearchValue}/>
       <Switch>
         <Route path='/' exact>
-          <div className='container container--main-wrap'>
-            <Gallery photos={photos} addToCart={addToCart} removeFromCart={removeFromCart} cart={cart} openModal={openModal} tags={tags} setTag={setFilter}/>
-          </div>
+          <Gallery photos={photos} addToCart={addToCart} removeFromCart={removeFromCart} cart={cart} openModal={openModal} tags={tags} setTag={setFilter}/>
         </Route>
         <Route path='/cart'>
-          <div className='container container--main-wrap'>
-            <Cart cart={cart} setCart={setCart} openModal={openModal} handleRemoveFromCart={removeFromCart}/>
-          </div>
+          <Cart cart={cart} setCart={setCart} openModal={openModal} handleRemoveFromCart={removeFromCart}/>
         </Route>
       </Switch>
       { modal.show && <Modal modalPhoto={modal.photo} modalClose={closeModal} addToCart={addToCart} removeFromCart={removeFromCart} cart={cart}/> }

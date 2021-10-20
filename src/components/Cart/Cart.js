@@ -43,30 +43,32 @@ const Cart = ({ cart, setCart, openModal, handleRemoveFromCart }) => {
   };
 
   return (
-    <main className='cart pt-4 pb-5'>
-      <ul className='cart__list mb-4 pb-4'>
-        {
-          cart.map(photo => <CartItem photo={photo} key={photo.id} handleCartItemCheck={handleCartItemCheck} openModal={openModal} handleRemoveFromCart={handleRemoveFromCart}/>)
-        }
-      </ul>
-      {
-        cart.length > 0 &&
-        <ul className='cart__controls'>
-          <li className='cart__controls-item'>
-            <button className='cart__button cart__button--download-all btn btn-success' onClick={handleDownloadAll} type='button'>Download all</button>
-          </li>
-          <li className='cart__controls-item'>
-            <button className='cart__button cart__button--check btn btn-success' onClick={handleDownloadSelected} type='button'>Download selected</button>
-          </li>
-          <li className='cart__controls-item'>
-            <button className='cart__button cart__button--remove-all btn btn-danger' onClick={handleRemoveAll} type='button'>Remove all</button>
-          </li>
-          <li className='cart__controls-item'>
-            <button className='cart__button cart__button--check btn btn-danger' onClick={handleRemoveSelected} type='button'>Remove selected</button>
-          </li>
+    <div className='container container--main-wrap'>
+      <main className='cart pt-4 pb-5'>
+        <ul className='cart__list mb-4 pb-4'>
+          {
+            cart.map(photo => <CartItem photo={photo} key={photo.id} handleCartItemCheck={handleCartItemCheck} openModal={openModal} handleRemoveFromCart={handleRemoveFromCart}/>)
+          }
         </ul>
-      }
-    </main>
+        {
+          cart.length > 0 &&
+          <ul className='cart__controls'>
+            <li className='cart__controls-item'>
+              <button className='cart__button cart__button--download-all btn btn-success' onClick={handleDownloadAll} type='button'>Download all</button>
+            </li>
+            <li className='cart__controls-item'>
+              <button className='cart__button cart__button--check btn btn-success' onClick={handleDownloadSelected} type='button'>Download selected</button>
+            </li>
+            <li className='cart__controls-item'>
+              <button className='cart__button cart__button--remove-all btn btn-danger' onClick={handleRemoveAll} type='button'>Remove all</button>
+            </li>
+            <li className='cart__controls-item'>
+              <button className='cart__button cart__button--check btn btn-danger' onClick={handleRemoveSelected} type='button'>Remove selected</button>
+            </li>
+          </ul>
+        }
+      </main>
+    </div>
   );
 };
 
