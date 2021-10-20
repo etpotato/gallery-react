@@ -101,7 +101,7 @@ const App = () => {
           </div>
         </Route>
       </Switch>
-      <Modal modalShow={modal.show} modalPhoto={modal.photo} modalClose={closeModal} addToCart={addToCart} removeFromCart={removeFromCart} cart={cart}/>
+      { modal.show && <Modal modalPhoto={modal.photo} modalClose={closeModal} addToCart={addToCart} removeFromCart={removeFromCart} cart={cart}/> }
     </Router>
   );
 }

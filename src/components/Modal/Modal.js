@@ -1,21 +1,23 @@
 import { useState, useEffect } from 'react';
 import './modal.scss';
 
-const Modal = ({ modalShow, modalPhoto, modalClose, addToCart, removeFromCart, cart }) => {
+const ANIMATION_TIME = 200;
+
+const Modal = ({ modalPhoto, modalClose, addToCart, removeFromCart, cart }) => {
   const [imageLoaded, setImageLoaded] = useState(false);
   
   const isInCart = cart.some(cartPhoto => cartPhoto.id === modalPhoto.id);
 
   const handleCloseClick = (evt) => {
     evt.preventDefault();
-    modalClose();
     setImageLoaded(false);
+    setTimeout(() => modalClose(), ANIMATION_TIME);
   };
 
   const handleEsc = (evt) => {
     if (evt.key === 'Escape' || evt.key === 'Esc') {
-      modalClose();
       setImageLoaded(false);
+      setTimeout(() => modalClose(), ANIMATION_TIME);
     }
   };
 
@@ -31,7 +33,6 @@ const Modal = ({ modalShow, modalPhoto, modalClose, addToCart, removeFromCart, c
     evt.target.blur();
   };
   
-  
   useEffect(() => {
     document.addEventListener('keydown', handleEsc);
     return () => document.removeEventListener('keydown', handleEsc);
@@ -39,7 +40,7 @@ const Modal = ({ modalShow, modalPhoto, modalClose, addToCart, removeFromCart, c
   }, []);
 
   return (
-    <div className={'modal fade' + ((modalShow && imageLoaded) ? ' show' : '')} role="dialog" aria-hidden="true">
+    <div className={'modal fade' + ((imageLoaded) ? ' show' : '')} role="dialog" aria-hidden="true">
       <div className='modal__underlay' onClick={handleCloseClick}></div>
       <div className="modal__container container modal-dialog-centered" role="document">
         <div className="modal-content">
@@ -49,7 +50,7 @@ const Modal = ({ modalShow, modalPhoto, modalClose, addToCart, removeFromCart, c
           </div>
           <div className="modal-body modal__body">
             <div className="modal__image-wrap rounded">
-              <img onLoad={() => setImageLoaded(true)} className="modal__image rounded" src={modalPhoto.src ? modalPhoto.src.large2x : ''} alt="Photos provided by Pexels"/>
+              <img onLoad={() => setImageLoaded(true)} className="modal__image rounded" src={modalPhoto?.src?.large2x} alt="Photos provided by Pexels"/>
             </div>
           </div>
           <div className="modal-footer modal__footer">

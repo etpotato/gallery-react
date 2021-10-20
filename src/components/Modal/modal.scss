@@ -1,9 +1,19 @@
 .modal {
+  display: grid;
   align-items: center;
   max-height: 100vh;
-
+  opacity: 0;
+  overflow: hidden;
+  transition: 0.3s opacity ease-in;
+  
   &.show {
-    display: grid;
+    opacity: 1;
+    transition: 0.3s opacity ease-out;
+
+    .modal__container {
+      transform: scale(1);
+      transition: 0.3s transform ease-out;
+    }
   }
   &.fade {
     background-color: rgba(0,0,0,0.7);
@@ -21,6 +31,8 @@
 .modal__container {
   position: relative;
   min-height: 0;
+  transform: scale(0.8);
+  transition: 0.3s transform ease-in;
 }
 
 .modal__close {
@@ -35,16 +47,14 @@
 
 .modal__image-wrap {
   display: grid;
-  place-content: center;
+  align-content: center;
   max-height: calc(100vh - 10rem);
   overflow: hidden;
 }
 
 .modal__image {
-  width: auto;
-  max-width: 100%;
+  width: 100%;
   height: auto;
-  max-height: 100%;
 }
 
 .modal__header {
