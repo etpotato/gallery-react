@@ -1,6 +1,7 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import throttle from '../../utils/throttle';
+import useScrollDirection from '../../hooks/useScrollDirection';
+import usePathToScrollUp from '../../hooks/usePathToScrollUp';
 import logo from './logo.svg';
 import './header.scss';
 
@@ -8,14 +9,20 @@ const BADGE_SCALE_TIME = 100;
 
 const Header = ({ cartCount, setFilter, searchValue, setSearchValue }) => {
   const [activeCart, setActiveCart] = useState(false);
-  const [hideHeader, setHideHeader] = useState(false);
-
+  const lastScrollY = useRef(0);
+  const hideHeaderClass = useScrollDirection(lastScrollY) ? ' header--hide': '';
   const { pathname } = useLocation();
   const isMainPage = pathname === '/';
+
+  usePathToScrollUp();
 
   const handleSearchSubmit = (evt) => {
     evt.preventDefault();
     setFilter(searchValue);
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth',
+    });
   };
 
   const handleSearchInput = (evt) => {
@@ -26,31 +33,6 @@ const Header = ({ cartCount, setFilter, searchValue, setSearchValue }) => {
     if (cartCount > 0) setActiveCart(true);
     setTimeout(() => setActiveCart(false), BADGE_SCALE_TIME);
   }, [cartCount]);
-
-  useEffect(() => {
-    window.scrollTo({
-      top: 0,
-      behavior: 'instant',
-    });
-  }, [pathname])
-
-  let lastScrollY = 0;
-
-  const toggleHeader = () => {
-    const currentY = window.scrollY;
-    const isScrollDown = currentY > 200 ? currentY > lastScrollY : false;
-    lastScrollY = currentY;
-    setHideHeader(isScrollDown); 
-  };
-
-  const handleScroll = throttle(toggleHeader, 400);
-
-  useEffect(() => {
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-
-  const hideHeaderClass = hideHeader ? ' header--hide': '';
 
   return (
     <header className={'header pt-3 pb-3' + hideHeaderClass}>

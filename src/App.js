@@ -32,7 +32,7 @@ const TAG_NAMES = [
   'Retro',
 ];
 
-// TODO: hide header text on scroll in mobile
+// TODO: hide header text on scroll in mobile (custom hook)
 // TODO: preloaders
 // TODO: infinite scroll in gallery
 
