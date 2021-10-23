@@ -17,15 +17,12 @@ const App = () => {
   const [searchPage, setSearchPage] = useState(1);
   const [photos, setPhotos] = useState([]);
   const [modal, setModal] = useState({show: false, photo: {}});
+  
+  useLocalStorage(cart, setCart);
+  useFetchPhotos(searchValue, searchPage, setPhotos);
 
   const addToCart = (photo) => {
-    setCart(state => [
-      ...state, 
-      {
-        ...photo,
-        checked: false,
-      }
-    ]);
+    setCart(state => [ ...state, { ...photo, checked: false }]);
   };
 
   const removeFromCart = (id) => {
@@ -40,16 +37,12 @@ const App = () => {
     setModal({show: false, photo: {}});
   };
 
-  useLocalStorage(cart, setCart);
-
-  useFetchPhotos(searchValue, searchPage, setPhotos);
-
   return (
     <Router>
       <Header cartCount={cart.length} searchValue={searchValue} setSearchValue={setSearchValue}/>
       <Switch>
         <Route path='/' exact>
-          <Gallery photos={photos} addToCart={addToCart} removeFromCart={removeFromCart} cart={cart} openModal={openModal} setSearchValue={setSearchValue} searchValue={searchValue}/>
+          <Gallery photos={photos} addToCart={addToCart} removeFromCart={removeFromCart} cart={cart} openModal={openModal} searchValue={searchValue} setSearchValue={setSearchValue}/>
         </Route>
         <Route path='/cart'>
           <Cart cart={cart} setCart={setCart} openModal={openModal} handleRemoveFromCart={removeFromCart}/>
