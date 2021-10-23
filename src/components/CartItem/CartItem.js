@@ -7,7 +7,6 @@ const CartItem = ({ photo, handleCartItemCheck, openModal, handleRemoveFromCart 
     setChecked(state => !state);
     handleCartItemCheck(photo);
   };
-  console.log(photo);
   return (
     <li className='cart__item cart-item'>
       <div className='cart-item__image-wrap'>

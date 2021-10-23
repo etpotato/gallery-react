@@ -1,5 +1,5 @@
 import { useEffect, useState, useRef } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useRouteMatch } from 'react-router-dom';
 import useScrollDirection from '../../hooks/useScrollDirection';
 import usePathToScrollUp from '../../hooks/usePathToScrollUp';
 import logo from './logo.svg';
@@ -11,8 +11,7 @@ const Header = ({ cartCount, setFilter, searchValue, setSearchValue }) => {
   const [activeCart, setActiveCart] = useState(false);
   const lastScrollY = useRef(0);
   const hideHeaderClass = useScrollDirection(lastScrollY) ? ' header--hide': '';
-  const { pathname } = useLocation();
-  const isMainPage = pathname === '/';
+  const isMainPage = useRouteMatch({ path: '/', exact: true });
 
   usePathToScrollUp();
 

@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import fetchPhotos from './utils/api';
+import useLocalStorage from './hooks/useLocalStorage';
 
 import Header from './components/Header/Header';
 import Gallery from './components/Gallery/Gallery';
@@ -55,7 +56,7 @@ const App = () => {
 
   const removeFromCart = (id) => {
     setCart(state => state.filter(cartPhoto => cartPhoto.id !== id));
-  }
+  };
 
   const setFilter = (name) => {
     const setFilteredPhotos = async () => {
@@ -65,7 +66,7 @@ const App = () => {
     setFilteredPhotos();
     setTags(state => ({ 
       ...state,
-      currentIndex: state.names.findIndex(stateName => stateName === name),
+      currentIndex: state.names.findIndex(stateName => stateName.toLocaleLowerCase() === name.toLocaleLowerCase()),
     }));
     setSearchValue(name);
   };
@@ -78,13 +79,15 @@ const App = () => {
     setModal({show: false, photo: {}});
   };
 
+  useLocalStorage(cart, setCart);
+
   useEffect(() => {
     const getPhotos = async () => {
       const data = await fetchPhotos();
       setPhotos(data.photos);
     }
     getPhotos();
-  },[]);
+  }, []);
 
   return (
     <Router>
