@@ -1,0 +1,26 @@
+const TAGS = [
+  'Nature',
+  'People',
+  'Ocean',
+  'Autumn',
+  'Planes',
+  'Chill',
+  'Sports',
+  'Animals',
+  'Architecture',
+  'Indoor Plants',
+  'Health',
+  'Coffee break',
+  'Books',
+  'Food',
+  'Music',
+  'Design',
+  'Art',
+  'Finance',
+  'Woodwork',
+  'Cozy home',
+  'Science',
+  'Retro',
+];
+
+export default TAGS;

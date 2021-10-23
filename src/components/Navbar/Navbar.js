@@ -1,6 +1,8 @@
+import TAGS from './tags.js';
 import './navbar.scss';
 
-const Navbar = ({ tags, searchValue, setSearchValue }) => {
+
+const Navbar = ({ searchValue, setSearchValue }) => {
   const handleLinkClick = (tag) => {
     return (evt) => {
       evt.preventDefault();
@@ -11,7 +13,7 @@ const Navbar = ({ tags, searchValue, setSearchValue }) => {
   return (
     <div className='gallery__navbar navbar mb-3'>
       <ul className='navbar__list'>
-        { tags.map((tag, index) => {
+        { TAGS.map((tag, index) => {
           
             const isCurrent = tag.toLowerCase() === searchValue.trim().toLowerCase();
             return (

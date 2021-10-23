@@ -8,31 +8,6 @@ import Gallery from './components/Gallery/Gallery';
 import Modal from './components/Modal/Modal';
 import Cart from './components/Cart/Cart';
 
-const TAG_NAMES = [
-  'Nature',
-  'People',
-  'Ocean',
-  'Autumn',
-  'Planes',
-  'Chill',
-  'Sports',
-  'Animals',
-  'Architecture',
-  'Indoor Plants',
-  'Health',
-  'Coffee break',
-  'Books',
-  'Food',
-  'Music',
-  'Design',
-  'Art',
-  'Finance',
-  'Woodwork',
-  'Cozy home',
-  'Science',
-  'Retro',
-];
-
 // TODO: preloaders
 // TODO: infinite scroll in gallery
 
@@ -74,7 +49,7 @@ const App = () => {
       <Header cartCount={cart.length} searchValue={searchValue} setSearchValue={setSearchValue}/>
       <Switch>
         <Route path='/' exact>
-          <Gallery photos={photos} addToCart={addToCart} removeFromCart={removeFromCart} cart={cart} openModal={openModal} tags={TAG_NAMES} setSearchValue={setSearchValue} searchValue={searchValue}/>
+          <Gallery photos={photos} addToCart={addToCart} removeFromCart={removeFromCart} cart={cart} openModal={openModal} setSearchValue={setSearchValue} searchValue={searchValue}/>
         </Route>
         <Route path='/cart'>
           <Cart cart={cart} setCart={setCart} openModal={openModal} handleRemoveFromCart={removeFromCart}/>
