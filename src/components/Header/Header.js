@@ -7,8 +7,9 @@ import './header.scss';
 
 const BADGE_SCALE_TIME = 100;
 
-const Header = ({ cartCount, setFilter, searchValue, setSearchValue }) => {
+const Header = ({ cartCount, searchValue, setSearchValue }) => {
   const [activeCart, setActiveCart] = useState(false);
+  const searchInput = useRef(null);
   const lastScrollY = useRef(0);
   const hideHeaderClass = useScrollDirection(lastScrollY) ? ' header--hide': '';
   const isMainPage = useRouteMatch({ path: '/', exact: true });
@@ -17,15 +18,11 @@ const Header = ({ cartCount, setFilter, searchValue, setSearchValue }) => {
 
   const handleSearchSubmit = (evt) => {
     evt.preventDefault();
-    setFilter(searchValue);
+    setSearchValue(searchInput.current.value.trim());
     window.scrollTo({
       top: 0,
       behavior: 'smooth',
     });
-  };
-
-  const handleSearchInput = (evt) => {
-    setSearchValue(evt.target.value);
   };
 
   useEffect(() => {
@@ -42,7 +39,7 @@ const Header = ({ cartCount, setFilter, searchValue, setSearchValue }) => {
           </Link>
           { isMainPage 
             ? <form onSubmit={handleSearchSubmit} className='d-flex col header__text'>
-                <input onInput={handleSearchInput} value={searchValue} className='form-control me-2' type='search' placeholder='Search' aria-label='Search'></input>
+                <input ref={searchInput} defaultValue={searchValue} className='form-control me-2' type='search' placeholder='Search' aria-label='Search'></input>
                 <button className='btn btn-outline-success' type='submit'>Search</button>
               </form>
             : <p className='col header__text lead text-center mb-0'>{ cartCount > 0 ? 'Your selected photos' : 'Your cart is empty' }</p>

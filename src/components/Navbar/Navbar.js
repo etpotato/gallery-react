@@ -1,19 +1,19 @@
 import './navbar.scss';
 
-const Navbar = ({ tags, setTag }) => {
-  const handleLinkClick = (name) => {
+const Navbar = ({ tags, searchValue, setSearchValue }) => {
+  const handleLinkClick = (tag) => {
     return (evt) => {
       evt.preventDefault();
       evt.target.blur();
-      setTag(name);
+      setSearchValue(tag);
     }
   };
-
   return (
     <div className='gallery__navbar navbar mb-3'>
       <ul className='navbar__list'>
-        { tags.names.map((tag, index) => {
-            const isCurrent = index === tags.currentIndex;
+        { tags.map((tag, index) => {
+          
+            const isCurrent = tag.toLowerCase() === searchValue.trim().toLowerCase();
             return (
             <li className='navbar__item' key={index}>
               <a onClick={handleLinkClick(tag)} className={'btn navbar__link' + (isCurrent ? ' btn-success' : ' btn-outline-success')} href='/'>{tag}</a>
