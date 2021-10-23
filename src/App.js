@@ -1,6 +1,6 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-import fetchPhotos from './utils/api';
+import useFetchPhotos from './hooks/useFetchPhotos';
 import useLocalStorage from './hooks/useLocalStorage';
 
 import Header from './components/Header/Header';
@@ -33,13 +33,11 @@ const TAG_NAMES = [
   'Retro',
 ];
 
-// TODO: hide header text on scroll in mobile (custom hook)
 // TODO: preloaders
 // TODO: infinite scroll in gallery
 
 const App = () => {
   const [cart, setCart] = useState([]);
-  const [tags, setTags] = useState({ names: TAG_NAMES, currentIndex: -1 });
   const [searchValue, setSearchValue] = useState('');
   const [searchPage, setSearchPage] = useState(1);
   const [photos, setPhotos] = useState([]);
@@ -59,18 +57,6 @@ const App = () => {
     setCart(state => state.filter(cartPhoto => cartPhoto.id !== id));
   };
 
-  const setFilter = (name) => {
-    (async () => {
-      const data = await fetchPhotos(name);
-      setPhotos(data.photos);
-    })();
-    setTags(state => ({ 
-      ...state,
-      currentIndex: state.names.findIndex(stateName => stateName.toLocaleLowerCase() === name.toLocaleLowerCase()),
-    }));
-    setSearchValue(name);
-  };
-
   const openModal = (id) => {
     setModal({show: true, photo: photos.find(photo => photo.id === id)});
   };
@@ -81,19 +67,14 @@ const App = () => {
 
   useLocalStorage(cart, setCart);
 
-  useEffect(() => {
-    (async () => {
-      const data = await fetchPhotos();
-      setPhotos(data.photos);
-    })();
-  }, []);
+  useFetchPhotos(searchValue, searchPage, setPhotos);
 
   return (
     <Router>
-      <Header cartCount={cart.length} setFilter={setFilter} searchValue={searchValue} setSearchValue={setSearchValue}/>
+      <Header cartCount={cart.length} searchValue={searchValue} setSearchValue={setSearchValue}/>
       <Switch>
         <Route path='/' exact>
-          <Gallery photos={photos} addToCart={addToCart} removeFromCart={removeFromCart} cart={cart} openModal={openModal} tags={tags} setTag={setFilter}/>
+          <Gallery photos={photos} addToCart={addToCart} removeFromCart={removeFromCart} cart={cart} openModal={openModal} tags={TAG_NAMES} setSearchValue={setSearchValue} searchValue={searchValue}/>
         </Route>
         <Route path='/cart'>
           <Cart cart={cart} setCart={setCart} openModal={openModal} handleRemoveFromCart={removeFromCart}/>
