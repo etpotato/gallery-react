@@ -41,6 +41,7 @@ const App = () => {
   const [cart, setCart] = useState([]);
   const [tags, setTags] = useState({ names: TAG_NAMES, currentIndex: -1 });
   const [searchValue, setSearchValue] = useState('');
+  const [searchPage, setSearchPage] = useState(1);
   const [photos, setPhotos] = useState([]);
   const [modal, setModal] = useState({show: false, photo: {}});
 
@@ -59,11 +60,10 @@ const App = () => {
   };
 
   const setFilter = (name) => {
-    const setFilteredPhotos = async () => {
+    (async () => {
       const data = await fetchPhotos(name);
       setPhotos(data.photos);
-    }
-    setFilteredPhotos();
+    })();
     setTags(state => ({ 
       ...state,
       currentIndex: state.names.findIndex(stateName => stateName.toLocaleLowerCase() === name.toLocaleLowerCase()),
@@ -82,11 +82,10 @@ const App = () => {
   useLocalStorage(cart, setCart);
 
   useEffect(() => {
-    const getPhotos = async () => {
+    (async () => {
       const data = await fetchPhotos();
       setPhotos(data.photos);
-    }
-    getPhotos();
+    })();
   }, []);
 
   return (
