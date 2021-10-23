@@ -1,12 +1,6 @@
-import { useState } from 'react';
 import './cartItem.scss';
 
 const CartItem = ({ photo, handleCartItemCheck, openModal, handleRemoveFromCart }) => {
-  const [checked, setChecked] = useState(photo.checked);
-  const handleCheck = () => {
-    setChecked(state => !state);
-    handleCartItemCheck(photo);
-  };
   return (
     <li className='cart__item cart-item'>
       <div className='cart-item__image-wrap'>
@@ -24,7 +18,7 @@ const CartItem = ({ photo, handleCartItemCheck, openModal, handleRemoveFromCart 
         <button className="btn btn-outline-danger" onClick={() => handleRemoveFromCart(photo.id)} type="button">Remove</button>
       </div>
       <label className="cart-item__checkbox">
-        <input className="cart-item__checkbox-input visually-hidden" checked={checked} onChange={handleCheck} type="checkbox"/>
+        <input className="cart-item__checkbox-input visually-hidden" checked={photo.checked} onChange={() => handleCartItemCheck(photo)} type="checkbox"/>
         <span className="cart-item__checkbox-check"></span>
         <span className="visually-hidden">Choose this photo</span>
       </label>
