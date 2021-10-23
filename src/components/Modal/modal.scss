@@ -35,6 +35,19 @@
   transition: 0.3s transform ease-in;
 }
 
+.modal__link {
+  color: inherit;
+  text-decoration-color: #0b5ed7;
+  
+  &:active {
+    color: #0b5ed7;
+  }
+
+  &:visited {
+    color: inherit;    
+  }
+}
+
 .modal__close {
   display: block;
   width: 32px;
