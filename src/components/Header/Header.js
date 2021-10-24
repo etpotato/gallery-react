@@ -7,7 +7,7 @@ import './header.scss';
 
 const BADGE_SCALE_TIME = 100;
 
-const Header = ({ cartCount, searchValue, setSearchValue }) => {
+const Header = ({ cartCount, searchValue, handleSearch }) => {
   const [activeCart, setActiveCart] = useState(false);
   const searchInput = useRef(null);
   const lastScrollY = useRef(0);
@@ -16,9 +16,9 @@ const Header = ({ cartCount, searchValue, setSearchValue }) => {
 
   usePathToScrollUp();
 
-  const handleSearchSubmit = (evt) => {
+  const handleSubmit = (evt) => {
     evt.preventDefault();
-    setSearchValue(searchInput.current.value.trim());
+    handleSearch(searchInput.current.value.trim());
     window.scrollTo({
       top: 0,
       behavior: 'smooth',
@@ -38,7 +38,7 @@ const Header = ({ cartCount, searchValue, setSearchValue }) => {
             <img className='header__logo rounded' src={logo} alt='logo' />
           </Link>
           { isMainPage 
-            ? <form onSubmit={handleSearchSubmit} className='d-flex col header__text'>
+            ? <form onSubmit={handleSubmit} className='d-flex col header__text'>
                 <input ref={searchInput} defaultValue={searchValue} className='form-control me-2' type='search' placeholder='Search' aria-label='Search'></input>
                 <button className='btn btn-outline-success' type='submit'>Search</button>
               </form>

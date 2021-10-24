@@ -1,18 +1,22 @@
-import { useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import fetchPhotos from '../utils/api';
 
-export default async function useFetchPhotos(keyword, page, callback) {
-  useEffect(() => {
-    (async () => {
-      const data = await fetchPhotos(keyword, page);
-      callback(data.photos);
-    })();
-  }, [keyword, page, callback]);
+export default function useFetchPhotos(keyword, page) {
+  const [isLoading, setIsLoading] = useState(false);
+  const [photos, setPhotos] = useState([]);
+  const [hasNextPage, setHasNextPage] = useState(true);
+
+  useEffect(() => setPhotos([]), [keyword]);
 
   useEffect(() => {
-    (async () => {
-      const data = await fetchPhotos();
-      callback(data.photos);
-    })();
-  }, [callback]);
+    setIsLoading(true);
+    const onSuccess = (data) => {
+      setPhotos(photos => [...photos, ...data.photos]);
+      setHasNextPage(Boolean(data.next_page));
+      setIsLoading(false);
+    };
+    fetchPhotos(keyword, page, onSuccess);
+  }, [keyword, page]);
+
+  return { isLoading, photos, hasNextPage };
 };

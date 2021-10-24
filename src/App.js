@@ -7,19 +7,26 @@ import Header from './components/Header/Header';
 import Gallery from './components/Gallery/Gallery';
 import Modal from './components/Modal/Modal';
 import Cart from './components/Cart/Cart';
+import Footer from './components/Footer/Footer';
 
-// TODO: preloaders
-// TODO: infinite scroll in gallery
+// TODO: logo
+// TODO: footer
+// TODO: scrollup button
+// TODO: infinite scroll in gallery testing
+// TODO: redux?
 
 const App = () => {
   const [cart, setCart] = useState([]);
   const [searchValue, setSearchValue] = useState('');
   const [searchPage, setSearchPage] = useState(1);
-  const [photos, setPhotos] = useState([]);
   const [modal, setModal] = useState({show: false, photo: {}});
-  
+  const { isLoading, photos, hasNextPage } = useFetchPhotos(searchValue, searchPage);
   useLocalStorage(cart, setCart);
-  useFetchPhotos(searchValue, searchPage, setPhotos);
+
+  const handleSearch = (value) => {
+    setSearchValue(value);
+    setSearchPage(1);
+  };
 
   const addToCart = (photo) => {
     setCart(state => [ ...state, { ...photo, checked: false }]);
@@ -29,8 +36,8 @@ const App = () => {
     setCart(state => state.filter(cartPhoto => cartPhoto.id !== id));
   };
 
-  const openModal = (id) => {
-    setModal({show: true, photo: photos.find(photo => photo.id === id)});
+  const openModal = (photo) => {
+    setModal({show: true, photo: photo});
   };
 
   const closeModal = () => {
@@ -39,15 +46,16 @@ const App = () => {
 
   return (
     <Router>
-      <Header cartCount={cart.length} searchValue={searchValue} setSearchValue={setSearchValue}/>
+      <Header cartCount={cart.length} searchValue={searchValue} handleSearch={handleSearch}/>
       <Switch>
         <Route path='/' exact>
-          <Gallery photos={photos} addToCart={addToCart} removeFromCart={removeFromCart} cart={cart} openModal={openModal} searchValue={searchValue} setSearchValue={setSearchValue}/>
+          <Gallery photos={photos} addToCart={addToCart} removeFromCart={removeFromCart} cart={cart} openModal={openModal} searchValue={searchValue} handleSearch={handleSearch} isLoading={isLoading} hasNextPage={hasNextPage} setSearchPage={setSearchPage}/>
         </Route>
         <Route path='/cart'>
           <Cart cart={cart} setCart={setCart} openModal={openModal} handleRemoveFromCart={removeFromCart}/>
         </Route>
       </Switch>
+      <Footer/>
       { modal.show && <Modal modalPhoto={modal.photo} modalClose={closeModal} addToCart={addToCart} removeFromCart={removeFromCart} cart={cart}/> }
     </Router>
   );

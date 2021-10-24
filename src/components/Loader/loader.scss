@@ -1,3 +1,11 @@
+.loader {
+  visibility: hidden;
+
+  &--visible {
+    visibility: visible; 
+  }
+}
+
 .loader__image {
   display: block;
   width: 52px;

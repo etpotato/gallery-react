@@ -2,12 +2,12 @@ import TAGS from './tags.js';
 import './navbar.scss';
 
 
-const Navbar = ({ searchValue, setSearchValue }) => {
+const Navbar = ({ searchValue, handleSearch }) => {
   const handleLinkClick = (tag) => {
     return (evt) => {
       evt.preventDefault();
       evt.target.blur();
-      setSearchValue(tag);
+      handleSearch(tag);
     }
   };
   return (

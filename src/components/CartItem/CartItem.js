@@ -4,7 +4,7 @@ const CartItem = ({ photo, handleCartItemCheck, openModal, handleRemoveFromCart 
   return (
     <li className='cart__item cart-item'>
       <div className='cart-item__image-wrap'>
-        <img onClick={() => openModal(photo.id)} className='cart-item__image' src={ photo.src.large } alt='Photos provided by Pexels'/>
+        <img onClick={() => openModal(photo)} className='cart-item__image' src={ photo.src.large } alt='Photos provided by Pexels'/>
       </div>
       <div className="cart-item__text-wrap">
         <ul className="cart-item__text">
