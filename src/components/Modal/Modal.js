@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import './modal.scss';
 
-const ANIMATION_TIME = 200;
+const ANIMATION_TIME = 300;
 
 const Modal = ({ modalPhoto, modalClose, addToCart, removeFromCart, cart }) => {
   const [imageLoaded, setImageLoaded] = useState(false);
