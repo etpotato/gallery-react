@@ -51,7 +51,7 @@ const Modal = ({ modalPhoto, modalClose, addToCart, removeFromCart, cart }) => {
             <button onClick={handleCloseClick} className='modal__close btn' type='button' aria-label='Close'></button>
           </div>
           <div className='modal-body modal__body'>
-            <div className='modal__image-wrap rounded'>
+            <div className='modal__image-wrap'>
               <img onLoad={() => setImageLoaded(true)} className='modal__image rounded' src={modalPhoto?.src?.large2x} alt='Photos provided by Pexels'/>
             </div>
           </div>

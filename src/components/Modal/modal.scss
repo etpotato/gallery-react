@@ -58,16 +58,10 @@
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Cpath stroke='black' stroke-width='3' stroke-linecap='round' d='M 10,10 L 30,30 M 30,10 L 10,30'%3E%3C/path%3E%3C/svg%3E");
 }
 
-.modal__image-wrap {
-  display: grid;
-  align-content: center;
-  max-height: calc(100vh - 10rem);
-  overflow: hidden;
-}
-
 .modal__image {
-  width: 100%;
-  height: auto;
+  display: block;
+  max-height: calc(100vh - 10rem);
+  margin: 0 auto;
 }
 
 .modal__header {
