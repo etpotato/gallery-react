@@ -9,6 +9,7 @@ import Modal from './components/Modal/Modal';
 import Cart from './components/Cart/Cart';
 import Footer from './components/Footer/Footer';
 
+// TODO: add pexels link
 // TODO: logo
 // TODO: footer
 // TODO: scrollup button

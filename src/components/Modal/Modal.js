@@ -46,7 +46,7 @@ const Modal = ({ modalPhoto, modalClose, addToCart, removeFromCart, cart }) => {
           <div className='modal-header modal__header'>
             <h5 className='modal-title lead'>
               Photographer:&ensp;
-              <a className='modal__link' href={modalPhoto.photographer_url}>{modalPhoto.photographer}</a>
+              <a className='modal__link' href={modalPhoto.photographer_url} target='_blank' rel='noreferrer'>{modalPhoto.photographer}</a>
             </h5>
             <button onClick={handleCloseClick} className='modal__close btn' type='button' aria-label='Close'></button>
           </div>
