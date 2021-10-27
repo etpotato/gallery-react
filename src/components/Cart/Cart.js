@@ -45,7 +45,7 @@ const Cart = ({ cart, setCart, openModal, handleRemoveFromCart }) => {
   };
 
   return (
-    <main className='cart pt-5 pb-5'>
+    <main className='page__main cart pt-5 pb-5'>
       <div className='container container--main-wrap'>
         { cart.length === 0 && <Link to='/' className='btn btn-primary cart__main-link'>Go to shop</Link> }
         <ul className='cart__list mb-4 pb-4'>

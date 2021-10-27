@@ -1,3 +1,12 @@
-.footer {
-  border: 2px solid black;
+.footer__link {
+  color: inherit;
+  font-weight: 300;
+  text-align: center;
+  text-decoration-color: #198754;
+}
+
+.footer__copy {
+  margin: 0;
+  font-weight: 300;
+  text-align: center;
 }

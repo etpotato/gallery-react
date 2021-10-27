@@ -9,9 +9,8 @@ import Modal from './components/Modal/Modal';
 import Cart from './components/Cart/Cart';
 import Footer from './components/Footer/Footer';
 
-// TODO: add pexels link
+// TODO: fig bug with duplicated photos
 // TODO: logo
-// TODO: footer
 // TODO: scrollup button
 // TODO: infinite scroll in gallery testing
 // TODO: redux?
