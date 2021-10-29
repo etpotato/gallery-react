@@ -37,10 +37,10 @@
 
 .modal__link {
   color: inherit;
-  text-decoration-color: #0b5ed7;
+  text-decoration-color: #198754;
   
   &:active {
-    color: #0b5ed7;
+    color: #198754;
   }
 
   &:visited {
@@ -60,8 +60,10 @@
 
 .modal__image {
   display: block;
-  max-height: calc(100vh - 10rem);
+  max-width: 100%;
+  max-height: calc(100vh - 14rem);
   margin: 0 auto;
+  border-radius: 4px;
 }
 
 .modal__header {

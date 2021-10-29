@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import fetchPhotos from '../utils/api';
+import getArrayOfUnique from '../utils/getArrayOfUnique';
 
 export default function useFetchPhotos(keyword, page) {
   const [isLoading, setIsLoading] = useState(false);
@@ -11,7 +12,7 @@ export default function useFetchPhotos(keyword, page) {
   useEffect(() => {
     setIsLoading(true);
     const onSuccess = (data) => {
-      setPhotos(photos => [...photos, ...data.photos]);
+      setPhotos(photos => getArrayOfUnique([...photos, ...data.photos]));
       setHasNextPage(Boolean(data.next_page));
       setIsLoading(false);
     };

@@ -1,5 +1,7 @@
 .gallery-item {
   position: relative;
+  border-radius: 4px;
+  overflow: hidden;
   @media (hover: hover) {
     &:hover,
     &:focus,
@@ -27,10 +29,7 @@
 
 .gallery-item__image-wrap {
   position: relative;
-  padding-top: 100%;
   background-color: #eeeeee;
-  overflow: hidden;
-  isolation: isolate;
 
   &::before {
     content: "";
@@ -63,13 +62,9 @@
 }
 
 .gallery-item__image {
-  position: absolute;
-  top: 0;
-  left: 0;
+  display: block;
   width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center;
+  height: auto;
 }
 
 .gallery-item__link {
@@ -82,17 +77,17 @@
 
 .gallery-item__addtocart {
   position: absolute;
-  bottom: 4px;
-  right: 4px;
+  bottom: 0;
+  right: 0;
   margin: 0;
   padding: 0;
-  width: 25%;
-  height: 25%;
+  width: 60px;
+  height: 60px;
   border: none;
   border-radius: 4px;
   background-color: rgba(255, 255, 255, 0.7);
   background-repeat: no-repeat;
-  background-position: center;
+  background-position: left 6px center;
   background-size: 70%;
   background-image: url('./cart-plus.svg');
   filter: invert(1);
@@ -107,6 +102,7 @@
     border-radius: 0;
     background-color: transparent;
     background-size: 100%;
+    background-position: center;
     opacity: 0;
     transform: translate(-50%, -50%);
     transition: opacity 0.3s ease-in-out, background-color 0.3s ease-in-out, transform 0.2s ease-in-out;

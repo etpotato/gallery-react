@@ -2,7 +2,7 @@ import './cartItem.scss';
 
 const CartItem = ({ photo, handleCartItemCheck, openModal, handleRemoveFromCart }) => {
   return (
-    <li className='cart__item cart-item'>
+    <div className='cart__item cart-item'>
       <div className='cart-item__image-wrap'>
         <img onClick={() => openModal(photo)} className='cart-item__image' src={ photo.src.large } alt='Photos provided by Pexels'/>
       </div>
@@ -22,7 +22,7 @@ const CartItem = ({ photo, handleCartItemCheck, openModal, handleRemoveFromCart 
         <span className="cart-item__checkbox-check"></span>
         <span className="visually-hidden">Choose this photo</span>
       </label>
-    </li>
+    </div>
   );
 };
 

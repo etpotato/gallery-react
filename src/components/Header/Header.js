@@ -35,7 +35,7 @@ const Header = ({ cartCount, searchValue, handleSearch }) => {
       <div className="container">
         <div className="header__wrap row">
           <Link to='/' className='header__logo-wrap col-sm-auto' aria-label='To main page'>
-            <img className='header__logo rounded' src={logo} alt='logo' />
+            <img className='header__logo' src={logo} alt='logo' />
           </Link>
           { isMainPage 
             ? <form onSubmit={handleSubmit} className='d-flex col header__text'>

@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import downloadZip from '../../utils/download';
-import CartItem from '../CartItem/CartItem';
+import CartGrid from '../CartGrid/CartGrid';
 import './cart.scss';
 
 const Cart = ({ cart, setCart, openModal, handleRemoveFromCart }) => {
@@ -48,11 +48,7 @@ const Cart = ({ cart, setCart, openModal, handleRemoveFromCart }) => {
     <main className='page__main cart pt-5 pb-5'>
       <div className='container container--main-wrap'>
         { cart.length === 0 && <Link to='/' className='btn btn-primary cart__main-link'>Go to shop</Link> }
-        <ul className='cart__list mb-4 pb-4'>
-          {
-            cart.map(photo => <CartItem photo={photo} key={photo.id} handleCartItemCheck={handleCartItemCheck} openModal={openModal} handleRemoveFromCart={handleRemoveFromCart}/>)
-          }
-        </ul>
+        <CartGrid cart={cart} handleCartItemCheck={handleCartItemCheck} handleRemoveFromCart={handleRemoveFromCart} openModal={openModal} />
         {
           cart.length > 0 
           && <ul className='cart__controls'>
