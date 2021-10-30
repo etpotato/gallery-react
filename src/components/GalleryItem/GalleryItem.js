@@ -1,6 +1,31 @@
+import { useCallback, useRef, useState } from 'react';
 import './galleryItem.scss'
 
+const getRow = (image) => {
+  const height = image.scrollHeight;
+  const rows = Math.floor(height / 10);
+  return rows;
+};
+
+const useImageRef = (setImageRow) => {
+  const imageRef = useRef(null);
+  const setImageRef = useCallback(image => {
+    if (!image) return;
+    imageRef.current = image;
+    imageRef.current.addEventListener('load', () => {
+      const row = getRow(image);
+      setImageRow(row);
+    }, {once: true});
+  }, [setImageRow]);
+
+  return setImageRef;
+}
+
 const GalleryItem = ({ photo, addToCart, removeFromCart, isInCart, openModal }) => {
+  const [row, setRow] = useState(15);
+
+  const setImageRef = useImageRef(setRow);
+
   const handleLinkClick = (evt) => {
     evt.preventDefault();
     openModal(photo);
@@ -19,9 +44,12 @@ const GalleryItem = ({ photo, addToCart, removeFromCart, isInCart, openModal }) 
   };
 
   return (
-    <div className={'gallery-item' + (isInCart ? ' gallery-item--in-cart' : '')}>
+    <div  
+      className={'gallery__item gallery-item' + (isInCart ? ' gallery-item--in-cart' : '')} 
+      style={{gridRowEnd: `span ${row}`}}
+    >
       <div className='gallery-item__image-wrap'>
-        <img className='gallery-item__image' src={photo.src.large} alt='Photos provided by Pexels' loading="lazy"/>
+        <img className='gallery-item__image' ref={ setImageRef } src={photo.src.large} alt='Photos provided by Pexels'/>
       </div>
       <a className='gallery-item__link' onClick={handleLinkClick} href='/'>
         <span className='visually-hidden'>Open in full size</span>

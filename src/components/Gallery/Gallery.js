@@ -1,7 +1,8 @@
 import { useRef, useEffect } from 'react';
 
 import Navbar from '../Navbar/Navbar';
-import GalleryGrid from '../GalleryGrid/GalleryGrid';
+// import GalleryGrid from '../GalleryGrid/GalleryGrid';
+import GalleryItem from '../GalleryItem/GalleryItem';
 import Loader from '../Loader/Loader';
 
 import './gallery.scss';
@@ -13,7 +14,6 @@ const Gallery = ({ photos, addToCart, removeFromCart, cart, openModal, searchVal
   useEffect(() => {
     const observerCallback = (entries, observer) => {
       if (entries[0].isIntersecting) {
-        // console.log('observer works')
         handleObserver.current();
       }
     };
@@ -29,7 +29,6 @@ const Gallery = ({ photos, addToCart, removeFromCart, cart, openModal, searchVal
   useEffect(() => {
     if (isLoading || !hasNextPage) handleObserver.current = () => false;
     else handleObserver.current = () => setSearchPage(prev => prev + 1);
-    // console.log('loading: ' + isLoading, 'hasNextPage: ' + hasNextPage);
   }, [isLoading, hasNextPage, setSearchPage]);
   
   return (
@@ -39,7 +38,13 @@ const Gallery = ({ photos, addToCart, removeFromCart, cart, openModal, searchVal
         <Navbar searchValue={searchValue} handleSearch={handleSearch}/>
         { (!photos.length && !isLoading) 
           ? <p className='gallery__noresult lead'>No results &#9785;</p>
-          : <GalleryGrid photos={photos} cart={cart} addToCart={addToCart} removeFromCart={removeFromCart} openModal={openModal}/>}
+          : <div className='gallery__list'>
+              {photos.map(photo => {
+                const isInCart = cart.some(cartPhoto => cartPhoto.id === photo.id);
+                return <GalleryItem photo={photo} isInCart={isInCart} addToCart={addToCart} removeFromCart={removeFromCart} key={photo.id} openModal={openModal}/>;
+              })}
+            </div>}
+          {/* <GalleryGrid photos={photos} cart={cart} addToCart={addToCart} removeFromCart={removeFromCart} openModal={openModal}/> */}
         <Loader isLoading={isLoading} forwardedRef={loader}/>
       </div>
     </main>
