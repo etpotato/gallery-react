@@ -1,13 +1,12 @@
 import { useRef, useEffect } from 'react';
 
 import Navbar from '../Navbar/Navbar';
-// import GalleryGrid from '../GalleryGrid/GalleryGrid';
 import GalleryItem from '../GalleryItem/GalleryItem';
 import Loader from '../Loader/Loader';
 
 import './gallery.scss';
 
-const Gallery = ({ photos, addToCart, removeFromCart, cart, openModal, searchValue, handleSearch, isLoading, hasNextPage, setSearchPage }) => {
+const Gallery = ({ photos, addToCart, removeFromCart, cart, openModal, searchValue, setSearchValue, isLoading, hasNextPage, setSearchPage }) => {
   const loader = useRef();
   const handleObserver = useRef(() => false);
 
@@ -18,7 +17,7 @@ const Gallery = ({ photos, addToCart, removeFromCart, cart, openModal, searchVal
       }
     };
     const observerOptions = {
-      rootMargin: '0px',
+      rootMargin: '10%',
     };
     const observer = new IntersectionObserver(observerCallback, observerOptions);
     loader.current && observer.observe(loader.current);
@@ -35,7 +34,7 @@ const Gallery = ({ photos, addToCart, removeFromCart, cart, openModal, searchVal
     <main className='page__main gallery pt-4 pb-3'>
       <div className='container container--main-wrap'>
         <h1 className='lead text-center mb-3'>Browse photos and get your favorite!</h1>
-        <Navbar searchValue={searchValue} handleSearch={handleSearch}/>
+        <Navbar searchValue={searchValue} setSearchValue={setSearchValue}/>
         { (!photos.length && !isLoading) 
           ? <p className='gallery__noresult lead'>No results &#9785;</p>
           : <div className='gallery__list'>
@@ -43,8 +42,8 @@ const Gallery = ({ photos, addToCart, removeFromCart, cart, openModal, searchVal
                 const isInCart = cart.some(cartPhoto => cartPhoto.id === photo.id);
                 return <GalleryItem photo={photo} isInCart={isInCart} addToCart={addToCart} removeFromCart={removeFromCart} key={photo.id} openModal={openModal}/>;
               })}
-            </div>}
-          {/* <GalleryGrid photos={photos} cart={cart} addToCart={addToCart} removeFromCart={removeFromCart} openModal={openModal}/> */}
+            </div>
+        }
         <Loader isLoading={isLoading} forwardedRef={loader}/>
       </div>
     </main>

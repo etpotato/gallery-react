@@ -1,30 +1,21 @@
-import { useCallback, useRef, useState } from 'react';
+import { useState } from 'react';
+
+import useImageOnLoad from '../../hooks/useImageOnLoad';
+
 import './galleryItem.scss'
+
+const ITEM_ROW_HEIGHT = 20;
 
 const getRow = (image) => {
   const height = image.scrollHeight;
-  const rows = Math.floor(height / 10);
-  return rows;
+  const rowSpan = Math.floor(height / ITEM_ROW_HEIGHT);
+  return rowSpan;
 };
-
-const useImageRef = (setImageRow) => {
-  const imageRef = useRef(null);
-  const setImageRef = useCallback(image => {
-    if (!image) return;
-    imageRef.current = image;
-    imageRef.current.addEventListener('load', () => {
-      const row = getRow(image);
-      setImageRow(row);
-    }, {once: true});
-  }, [setImageRow]);
-
-  return setImageRef;
-}
 
 const GalleryItem = ({ photo, addToCart, removeFromCart, isInCart, openModal }) => {
   const [row, setRow] = useState(15);
 
-  const setImageRef = useImageRef(setRow);
+  const setImageRef = useImageOnLoad((image) => setRow(getRow(image)));
 
   const handleLinkClick = (evt) => {
     evt.preventDefault();
@@ -46,7 +37,7 @@ const GalleryItem = ({ photo, addToCart, removeFromCart, isInCart, openModal }) 
   return (
     <div  
       className={'gallery__item gallery-item' + (isInCart ? ' gallery-item--in-cart' : '')} 
-      style={{gridRowEnd: `span ${row}`}}
+      style={{gridRow: `span ${row}`}}
     >
       <div className='gallery-item__image-wrap'>
         <img className='gallery-item__image' ref={ setImageRef } src={photo.src.large} alt='Photos provided by Pexels'/>

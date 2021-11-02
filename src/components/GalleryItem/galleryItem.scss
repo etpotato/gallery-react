@@ -2,6 +2,10 @@
   position: relative;
   border-radius: 4px;
   overflow: hidden;
+  animation-name: fadeInUp;
+  animation-duration: 0.4s;
+  animation-timing-function: ease-out;
+
   @media (hover: hover) {
     &:hover,
     &:focus,
@@ -110,5 +114,16 @@
     &:active {
       transform: translate(-50%, -50%) scale(1);
     }
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    transform: translateY(30%);
+    opacity: 0.3;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
   }
 }

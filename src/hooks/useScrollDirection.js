@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import throttle from '../utils/throttle';
+import { throttle } from '../utils/helpers';
 
 
 export default function useScrollDirection(lastScrollRef) {

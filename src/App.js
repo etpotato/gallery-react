@@ -9,24 +9,18 @@ import Modal from './components/Modal/Modal';
 import Cart from './components/Cart/Cart';
 import Footer from './components/Footer/Footer';
 
-// TODO: fig bug with duplicated photos
 // TODO: logo
 // TODO: scrollup button
 // TODO: infinite scroll in gallery testing
-// TODO: redux?
+// TODO: redirect to index after download all
 
 const App = () => {
   const [cart, setCart] = useState([]);
   const [searchValue, setSearchValue] = useState('');
   const [searchPage, setSearchPage] = useState(1);
   const [modal, setModal] = useState({show: false, photo: {}});
-  const { isLoading, photos, hasNextPage } = useFetchPhotos(searchValue, searchPage);
+  const { isLoading, photos, hasNextPage } = useFetchPhotos(searchValue, searchPage, setSearchPage);
   useLocalStorage(cart, setCart);
-
-  const handleSearch = (value) => {
-    setSearchValue(value);
-    setSearchPage(1);
-  };
 
   const addToCart = (photo) => {
     setCart(state => [ ...state, { ...photo, checked: false }]);
@@ -46,10 +40,10 @@ const App = () => {
 
   return (
     <Router>
-      <Header cartCount={cart.length} searchValue={searchValue} handleSearch={handleSearch}/>
+      <Header cartCount={cart.length} searchValue={searchValue} setSearchValue={setSearchValue}/>
       <Switch>
         <Route path='/' exact>
-          <Gallery photos={photos} addToCart={addToCart} removeFromCart={removeFromCart} cart={cart} openModal={openModal} searchValue={searchValue} handleSearch={handleSearch} isLoading={isLoading} hasNextPage={hasNextPage} setSearchPage={setSearchPage}/>
+          <Gallery photos={photos} addToCart={addToCart} removeFromCart={removeFromCart} cart={cart} openModal={openModal} searchValue={searchValue} setSearchValue={setSearchValue} isLoading={isLoading} hasNextPage={hasNextPage} setSearchPage={setSearchPage}/>
         </Route>
         <Route path='/cart'>
           <Cart cart={cart} setCart={setCart} openModal={openModal} handleRemoveFromCart={removeFromCart}/>

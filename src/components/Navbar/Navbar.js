@@ -2,14 +2,17 @@ import TAGS from './tags.js';
 import './navbar.scss';
 
 
-const Navbar = ({ searchValue, handleSearch }) => {
+const Navbar = ({ searchValue, setSearchValue }) => {
   const handleLinkClick = (tag) => {
     return (evt) => {
       evt.preventDefault();
       evt.target.blur();
-      handleSearch(tag);
+      setSearchValue(tag);
     }
   };
+
+  console.log(searchValue);
+
   return (
     <div className='gallery__navbar navbar mb-3'>
       <ul className='navbar__list'>

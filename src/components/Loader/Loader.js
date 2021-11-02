@@ -5,7 +5,7 @@ export default function Loader ({ isLoading, forwardedRef }) {
   const visibleClass = isLoading ? ' loader--visible' : '';
   
   return ( 
-    <div className={`loader pt-2 pb-2${visibleClass}`}>
+    <div className={`loader pt-4 pb-2${visibleClass}`}>
       <img className='loader__image' ref={forwardedRef} src={ loader } alt='loading'/>
     </div>
   );
