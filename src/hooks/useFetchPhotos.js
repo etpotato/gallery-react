@@ -7,6 +7,15 @@ export default function useFetchPhotos(keyword, page, setPage) {
   const [isLoading, setIsLoading] = useState(false);
   const [photos, setPhotos] = useState([]);
   const [hasNextPage, setHasNextPage] = useState(true);
+  const [error, setError] = useState(false);
+
+  const onSuccess = (data) => {
+    setPhotos(photos => getArrayOfUnique([...photos, ...data.photos]));
+    setHasNextPage(Boolean(data.next_page));
+    setIsLoading(false);
+  };
+
+  const onError = () => setError(true);
 
   useEffect(() => {
     setPhotos([]);
@@ -15,13 +24,9 @@ export default function useFetchPhotos(keyword, page, setPage) {
 
   useEffect(() => {
     setIsLoading(true);
-    const onSuccess = (data) => {
-      setPhotos(photos => getArrayOfUnique([...photos, ...data.photos]));
-      setHasNextPage(Boolean(data.next_page));
-      setIsLoading(false);
-    };
-    fetchPhotos(keyword, page, onSuccess);
+    
+    fetchPhotos(keyword, page, onSuccess, onError);
   }, [keyword, page]);
 
-  return { isLoading, photos, hasNextPage };
+  return { isLoading, photos, hasNextPage, error, setError };
 };

@@ -9,7 +9,7 @@ const getSearchUrl = (keyword, page) => {
   return `https://api.pexels.com/v1/search?query=${keyword}&page=${page}&per_page=${PER_PAGE}`;
 };
 
-export default async function fetchPhotos (keyword, page = 1, onSuccess) {
+export default async function fetchPhotos (keyword, page = 1, onSuccess, onError) {
   const url = keyword ? getSearchUrl(keyword, page) : getDefaultUrl(page);
   try {
     console.log(`fetch: keyword-${keyword}, page-${page}`);
@@ -21,7 +21,7 @@ export default async function fetchPhotos (keyword, page = 1, onSuccess) {
       return onSuccess(data);
     } 
     throw new Error('Fetch error ' + response.status);
-  } catch (error) {
-    console.error(error);
+  } catch {
+    onError();
   }
 };

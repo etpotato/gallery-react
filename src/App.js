@@ -6,6 +6,7 @@ import useLocalStorage from './hooks/useLocalStorage';
 import Header from './components/Header/Header';
 import Gallery from './components/Gallery/Gallery';
 import Modal from './components/Modal/Modal';
+import Error from './components/Error/Error';
 import Cart from './components/Cart/Cart';
 import Footer from './components/Footer/Footer';
 
@@ -19,7 +20,7 @@ const App = () => {
   const [searchValue, setSearchValue] = useState('');
   const [searchPage, setSearchPage] = useState(1);
   const [modal, setModal] = useState({show: false, photo: {}});
-  const { isLoading, photos, hasNextPage } = useFetchPhotos(searchValue, searchPage, setSearchPage);
+  const { isLoading, photos, hasNextPage, error, setError } = useFetchPhotos(searchValue, searchPage, setSearchPage);
   useLocalStorage(cart, setCart);
 
   const addToCart = (photo) => {
@@ -51,6 +52,7 @@ const App = () => {
       </Switch>
       <Footer/>
       { modal.show && <Modal modalPhoto={modal.photo} modalClose={closeModal} addToCart={addToCart} removeFromCart={removeFromCart} cart={cart}/> }
+      { error && <Error setError={setError} /> }
     </Router>
   );
 }

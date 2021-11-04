@@ -1,0 +1,18 @@
+.modal--error {
+  .modal__container {
+    max-width: max-content;
+  }
+
+  .modal__close {
+    margin-left: auto;
+  }
+
+  .modal__body {
+    padding: 1.5em;
+  }
+
+  .modal__footer {
+    justify-content: center;
+    padding: 0 1.5em 1.5em;
+  }
+}
