@@ -1,4 +1,4 @@
-import TAGS from './tags.js';
+import APP from '../../config';
 import './navbar.scss';
 
 
@@ -14,7 +14,7 @@ const Navbar = ({ searchValue, setSearchValue }) => {
   return (
     <div className='gallery__navbar navbar mb-3'>
       <ul className='navbar__list'>
-        { TAGS.map((tag, index) => {
+        { APP.TAGS.map((tag, index) => {
           
             const isCurrent = tag.toLowerCase() === searchValue.trim().toLowerCase();
             return (

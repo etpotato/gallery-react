@@ -1,17 +1,12 @@
 import StackGrid from 'react-stack-grid';
-
+import APP from '../../config';
 import CartItem from '../CartItem/CartItem';
-
-const BREAKPOINTS = {
-  mobile: 520,
-  tablet: 768,
-};
 
 export default function CartGrid({cart, handleCartItemCheck, handleRemoveFromCart, openModal}) {
   const windowWidth = window.innerWidth;
   const getWidth = () => {
-    if (windowWidth > BREAKPOINTS.tablet) return '33.33%';
-    if (windowWidth > BREAKPOINTS.mobile) return '50%';
+    if (windowWidth > APP.BREAKPOINTS.tablet) return '33.33%';
+    if (windowWidth > APP.BREAKPOINTS.mobile) return '50%';
     return '100%';
   };
   return (

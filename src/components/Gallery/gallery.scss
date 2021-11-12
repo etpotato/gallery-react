@@ -5,12 +5,8 @@
 
 .gallery__list {
   display: grid;
-  grid-auto-flow: row dense;
-  grid-template-columns: repeat(4, 1fr);
-  grid-auto-rows: 10px;
-  isolation: isolate;
-}
-
-.gallery__item {
-  margin: 4px;
+  grid-gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
 }

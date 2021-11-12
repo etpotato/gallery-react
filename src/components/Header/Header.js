@@ -2,6 +2,7 @@ import { useEffect, useState} from 'react';
 import { Link, useRouteMatch } from 'react-router-dom';
 import useScrollDirection from '../../hooks/useScrollDirection';
 import usePathToScrollUp from '../../hooks/usePathToScrollUp';
+import APP from '../../config';
 
 import ScrollUpButton from '../ScrollUpButton/ScrollUpButton';
 
@@ -21,12 +22,12 @@ const Header = ({ cartCount, searchValue, setSearchValue }) => {
 
   const onScrollDown = (scrollY) => {
     setModif(HIDE_HEADER_CLASS);
-    if (scrollY > 400) setShowScrollUp(true);
+    if (scrollY > APP.SCROLL_Y_BOUND) setShowScrollUp(true);
   };
 
   const onScrollUp = (scrollY) => {
     setModif('');
-    if (scrollY < 400) setShowScrollUp(false); 
+    if (scrollY < APP.SCROLL_Y_BOUND) setShowScrollUp(false); 
   };
 
   useScrollDirection(onScrollDown, onScrollUp);

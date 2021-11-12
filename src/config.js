@@ -1,0 +1,42 @@
+const APP = {
+  MAX_PHOTOS_COUNT: 200,
+  BREAKPOINTS: {
+    mobile: 520,
+    tablet: 768,  
+    desktop: 900,
+  },
+  COLUMN_COUNT: {
+    mobile: 2,
+    tablet: 3,
+    desktop: 4,
+  },
+  SCROLL_Y_BOUND: 400,
+  SCROLL_SENSITIVITY: 200,
+  LOCAL_STORAGE_NAME: 'photo_store_cart',
+  TAGS: [
+    'Nature',
+    'People',
+    'Ocean',
+    'Autumn',
+    'Planes',
+    'Chill',
+    'Sports',
+    'Animals',
+    'Architecture',
+    'Indoor Plants',
+    'Health',
+    'Coffee break',
+    'Books',
+    'Food',
+    'Music',
+    'Design',
+    'Art',
+    'Finance',
+    'Woodwork',
+    'Cozy home',
+    'Science',
+    'Retro',
+  ],
+};
+
+export default APP;

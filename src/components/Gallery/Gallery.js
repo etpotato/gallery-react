@@ -1,14 +1,24 @@
-import { useRef, useEffect } from 'react';
+import { useState, useRef, useEffect } from 'react';
+import useMatchMedia from '../../hooks/useMatchMedia';
+import { separateArray } from '../../utils/helpers';
+import APP from '../../config';
 
 import Navbar from '../Navbar/Navbar';
-import GalleryItem from '../GalleryItem/GalleryItem';
+import GalleryColumn from '../GalleryColumn/GalleryColumn';
 import Loader from '../Loader/Loader';
 
 import './gallery.scss';
 
 const Gallery = ({ photos, addToCart, removeFromCart, cart, openModal, searchValue, setSearchValue, isLoading, hasNextPage, setSearchPage }) => {
+  const [columnCount, setColumnCount] = useState(APP.COLUMN_COUNT.desktop);
   const loader = useRef();
   const handleObserver = useRef(() => false);
+
+  useMatchMedia(
+    () => setColumnCount(APP.COLUMN_COUNT.mobile),
+    () => setColumnCount(APP.COLUMN_COUNT.tablet),
+    () => setColumnCount(APP.COLUMN_COUNT.desktop),
+  );
 
   useEffect(() => {
     const observerCallback = (entries) => {
@@ -21,15 +31,19 @@ const Gallery = ({ photos, addToCart, removeFromCart, cart, openModal, searchVal
     };
     const observer = new IntersectionObserver(observerCallback, observerOptions);
     loader.current && observer.observe(loader.current);
-
+    
     return () => observer.disconnect();
   }, []);
-
+  
   useEffect(() => {
     if (isLoading || !hasNextPage) handleObserver.current = () => false;
-    else handleObserver.current = () => setSearchPage(prev => prev + 1);
+    else handleObserver.current = () => {
+      setSearchPage(prev => prev + 1);
+    };
   }, [isLoading, hasNextPage, setSearchPage]);
-  
+
+  const photosByColumn = separateArray(photos, columnCount);
+
   return (
     <main className='page__main gallery pt-4 pb-3'>
       <div className='container container--main-wrap'>
@@ -37,12 +51,17 @@ const Gallery = ({ photos, addToCart, removeFromCart, cart, openModal, searchVal
         <Navbar searchValue={searchValue} setSearchValue={setSearchValue}/>
         { (!photos.length && !isLoading) 
           ? <p className='gallery__noresult lead'>No results &#9785;</p>
-          : <div className='gallery__list'>
-              {photos.map(photo => {
-                const isInCart = cart.some(cartPhoto => cartPhoto.id === photo.id);
-                return <GalleryItem photo={photo} isInCart={isInCart} addToCart={addToCart} removeFromCart={removeFromCart} key={photo.id} openModal={openModal}/>;
-              })}
-            </div>
+          : <ul className='gallery__list' style={{ gridTemplateColumns: `repeat(${columnCount}, 1fr)` }}>
+              { photosByColumn.map((column, index) => <GalleryColumn
+                                              key={index + columnCount}
+                                              photos={column}
+                                              cart={cart}
+                                              addToCart={addToCart}
+                                              removeFromCart={removeFromCart}
+                                              openModal={openModal}
+                                            />
+              )}
+            </ul>
         }
         <Loader isLoading={isLoading} forwardedRef={loader}/>
       </div>

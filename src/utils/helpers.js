@@ -38,3 +38,11 @@ export function throttle(func, limit = 300) {
     }
   }
 };
+
+export function separateArray(arr, index) {
+  const newArray = new Array(index).fill(null).map(() => []);
+  arr.forEach((item, i) => {
+    newArray[i % index].push(item);
+  });
+  return newArray;
+};

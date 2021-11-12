@@ -1,5 +1,6 @@
 import { useEffect, useRef } from 'react';
 import { throttle } from '../utils/helpers';
+import APP from '../config';
 
 
 export default function useScrollDirection(onScrollDown, onScrollUp) {
@@ -7,7 +8,7 @@ export default function useScrollDirection(onScrollDown, onScrollUp) {
   
   const toggleScrollDirection = () => {
     const currentY = window.scrollY;
-    const isScrollDown = currentY > 200 ? currentY > lastScrollY.current : false;
+    const isScrollDown = currentY > APP.SCROLL_SENSITIVITY ? currentY > lastScrollY.current : false;
     lastScrollY.current = currentY;
     isScrollDown ? onScrollDown(currentY) : onScrollUp(currentY);
   };
