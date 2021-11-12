@@ -4,7 +4,7 @@ import useImageOnLoad from '../../hooks/useImageOnLoad';
 
 import './galleryItem.scss'
 
-const ITEM_ROW_HEIGHT = 20;
+const ITEM_ROW_HEIGHT = 10;
 
 const getRow = (image) => {
   const height = image.scrollHeight;

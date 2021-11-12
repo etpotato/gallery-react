@@ -19,6 +19,10 @@
   }
 }
 
+.header__container {
+  position: relative;
+}
+
 .header__wrap {
   justify-content: space-between;
   @media (max-width: 600px) {

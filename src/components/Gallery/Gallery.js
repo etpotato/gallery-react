@@ -11,7 +11,7 @@ const Gallery = ({ photos, addToCart, removeFromCart, cart, openModal, searchVal
   const handleObserver = useRef(() => false);
 
   useEffect(() => {
-    const observerCallback = (entries, observer) => {
+    const observerCallback = (entries) => {
       if (entries[0].isIntersecting) {
         handleObserver.current();
       }

@@ -3,6 +3,8 @@ import { useState, useEffect } from 'react';
 import fetchPhotos from '../utils/api';
 import { getArrayOfUnique } from '../utils/helpers';
 
+const MAX_PHOTOS_COUNT = 100;
+
 export default function useFetchPhotos(keyword, page, setPage) {
   const [isLoading, setIsLoading] = useState(false);
   const [photos, setPhotos] = useState([]);
@@ -23,6 +25,7 @@ export default function useFetchPhotos(keyword, page, setPage) {
   }, [keyword, setPage]);
 
   useEffect(() => {
+    if (photos.length >= MAX_PHOTOS_COUNT) return;
     setIsLoading(true);
     
     fetchPhotos(keyword, page, onSuccess, onError);

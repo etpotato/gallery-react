@@ -11,8 +11,6 @@ const Navbar = ({ searchValue, setSearchValue }) => {
     }
   };
 
-  console.log(searchValue);
-
   return (
     <div className='gallery__navbar navbar mb-3'>
       <ul className='navbar__list'>
