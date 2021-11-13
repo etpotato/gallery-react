@@ -1,6 +1,6 @@
 .scrollup {
-  position: absolute;
-  top: calc(100vh - 135px); 
+  position: fixed;
+  bottom: 5vh;
   right: 0.75rem;
   display: grid;
   place-content: center;
@@ -11,12 +11,24 @@
   color: #198754;
   background-color: white;
   box-shadow: 0 5px 10px rgba(0, 0, 0, 0.4);
-  transition: box-shadow .3s ease-out, transform .3s ease-out;
+  transform: scale(0.5);
+  opacity: 0;
+  transition: box-shadow .2s ease-in, transform .2s ease-in, opacity .2s ease-in;
 
-  &:hover,
-  &:focus {
+  &.show {
+    transform: scale(1);
+    opacity: 1;
+    transition: box-shadow .2s ease-out, transform .2s ease-out, opacity .2s ease-out;
+  }
+
+  &.show:hover,
+  &.show:focus {
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
     transform: scale(1.1);
+  }
+
+  @media (min-width: 1440px) {
+    right: calc((100vw - 1480px) / 2);
   }
 }
 

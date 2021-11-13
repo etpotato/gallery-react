@@ -3,7 +3,7 @@ import { throttle } from '../utils/helpers';
 import APP from '../config';
 
 
-export default function useScrollDirection(onScrollDown, onScrollUp) {
+export default function useScrollDirection( onScrollDown, onScrollUp ) {
   const lastScrollY = useRef(0);
   
   const toggleScrollDirection = () => {

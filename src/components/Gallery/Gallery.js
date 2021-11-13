@@ -3,10 +3,11 @@ import useMatchMedia from '../../hooks/useMatchMedia';
 import { separateArray } from '../../utils/helpers';
 import APP from '../../config';
 
+
 import Navbar from '../Navbar/Navbar';
 import GalleryColumn from '../GalleryColumn/GalleryColumn';
 import Loader from '../Loader/Loader';
-
+import ScrollUpButton from '../ScrollUpButton/ScrollUpButton';
 import './gallery.scss';
 
 const Gallery = ({ photos, addToCart, removeFromCart, cart, openModal, searchValue, setSearchValue, isLoading, hasNextPage, setSearchPage }) => {
@@ -63,6 +64,7 @@ const Gallery = ({ photos, addToCart, removeFromCart, cart, openModal, searchVal
               )}
             </ul>
         }
+        <ScrollUpButton />
         <Loader isLoading={isLoading} forwardedRef={loader}/>
       </div>
     </main>

@@ -1,6 +1,8 @@
 import { Link } from 'react-router-dom';
 import downloadZip from '../../utils/download';
 import CartGrid from '../CartGrid/CartGrid';
+import ScrollUpButton from '../ScrollUpButton/ScrollUpButton';
+
 import './cart.scss';
 
 const Cart = ({ cart, setCart, openModal, handleRemoveFromCart }) => {
@@ -66,6 +68,7 @@ const Cart = ({ cart, setCart, openModal, handleRemoveFromCart }) => {
               </li>
             </ul>
         }
+        <ScrollUpButton />
       </div>
     </main>
   );

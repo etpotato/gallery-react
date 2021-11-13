@@ -2,9 +2,6 @@ import { useEffect, useState} from 'react';
 import { Link, useRouteMatch } from 'react-router-dom';
 import useScrollDirection from '../../hooks/useScrollDirection';
 import usePathToScrollUp from '../../hooks/usePathToScrollUp';
-import APP from '../../config';
-
-import ScrollUpButton from '../ScrollUpButton/ScrollUpButton';
 
 import logo from './logo.svg';
 import './header.scss';
@@ -15,22 +12,14 @@ const HIDE_HEADER_CLASS = ' header--hide';
 const Header = ({ cartCount, searchValue, setSearchValue }) => {
   const [activeCart, setActiveCart] = useState(false);
   const [modif, setModif] = useState('');
-  const [showScrollUp, setShowScrollUp] = useState(false);
   const [inputValue, setInputValue] = useState('');
   const isMainPage = useRouteMatch({ path: '/', exact: true });
   usePathToScrollUp();
 
-  const onScrollDown = (scrollY) => {
-    setModif(HIDE_HEADER_CLASS);
-    if (scrollY > APP.SCROLL_Y_BOUND) setShowScrollUp(true);
-  };
-
-  const onScrollUp = (scrollY) => {
-    setModif('');
-    if (scrollY < APP.SCROLL_Y_BOUND) setShowScrollUp(false); 
-  };
-
-  useScrollDirection(onScrollDown, onScrollUp);
+  useScrollDirection(
+    () => setModif(HIDE_HEADER_CLASS),
+    () => setModif('')
+  );
 
   const handleChange = (evt) => {
     setInputValue(evt.target.value);
@@ -74,7 +63,6 @@ const Header = ({ cartCount, searchValue, setSearchValue }) => {
             </Link>
           </div>
         </div>
-        { showScrollUp && <ScrollUpButton /> }
       </div>
     </header>
   );

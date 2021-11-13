@@ -10,7 +10,7 @@ const APP = {
     tablet: 3,
     desktop: 4,
   },
-  SCROLL_Y_BOUND: 400,
+  SCROLL_Y_BOUND: 800,
   SCROLL_SENSITIVITY: 200,
   LOCAL_STORAGE_NAME: 'photo_store_cart',
   TAGS: [
