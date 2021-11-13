@@ -2,9 +2,7 @@
   position: relative;
   border-radius: 4px;
   overflow: hidden;
-  animation-name: fadeInUp;
-  animation-duration: 0.4s;
-  animation-timing-function: ease-out;
+  animation-name: fadeInUp 0.4s ease-out;
 
   @media (hover: hover) {
     &:hover,

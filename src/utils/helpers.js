@@ -46,3 +46,12 @@ export function separateArray(arr, index) {
   });
   return newArray;
 };
+
+export function chopArray(arr, index) {
+  const newArray = [];
+  const count = Math.ceil(arr.length / index);
+  for (let i = 1; i <= index; i++) {
+    newArray.push(arr.slice(count*i - count, count*i));
+  }
+  return newArray;
+}

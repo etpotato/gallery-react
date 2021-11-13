@@ -1,5 +1,11 @@
 .cart-item {
   position: relative;
+  transition: opacity 0.3s ease-out;
+  animation: fadeInUp 0.3s ease-out;
+
+  &.hide {
+    opacity: 0;
+  }
 }
 
 .cart-item__image-wrap {
@@ -82,4 +88,15 @@
 
 .cart-item__checkbox-input:checked ~ .cart-item__checkbox-check {
   opacity: 1;
+}
+
+@keyframes fadeInUp {
+  from {
+    transform: translateY(10%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
 }

@@ -1,13 +1,13 @@
 import { useState } from 'react';
 import useMatchMedia from '../../hooks/useMatchMedia';
-import { separateArray } from '../../utils/helpers';
+import { separateArray, chopArray } from '../../utils/helpers';
 import APP from '../../config';
 
 import './gallery-grid.scss';
 
 export default function GalleryGrid ({ children, isCart }) {
   const [columnCount, setColumnCount] = useState(APP.COLUMN_COUNT.desktop);
-  const itemsByColumn = separateArray(children, columnCount);
+  const itemsByColumn = isCart ? chopArray(children, columnCount) : separateArray(children, columnCount);
 
   const columnByDevice = {
     mobile: isCart ? APP.CART_COLUMN_COUNT.mobile : APP.COLUMN_COUNT.mobile,
