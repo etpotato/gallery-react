@@ -1,20 +1,18 @@
-const API_KEY = '563492ad6f91700001000001647246300ed247b7b6748ac61d528807';
-const PER_PAGE = 12;
+import APP from '../config';
 
 const getDefaultUrl = (page) => {
-  return `https://api.pexels.com/v1/curated?page=${page}&per_page=${PER_PAGE}`;
+  return `https://api.pexels.com/v1/curated?page=${page}&per_page=${APP.PHOTOS_PER_PAGE}`;
 };
 
 const getSearchUrl = (keyword, page) => {
-  return `https://api.pexels.com/v1/search?query=${keyword}&page=${page}&per_page=${PER_PAGE}`;
+  return `https://api.pexels.com/v1/search?query=${keyword}&page=${page}&per_page=${APP.PHOTOS_PER_PAGE}`;
 };
 
 export default async function fetchPhotos (keyword, page = 1, onSuccess, onError) {
   const url = keyword ? getSearchUrl(keyword, page) : getDefaultUrl(page);
   try {
-    // console.log(`fetch: keyword-${keyword}, page-${page}`);
     const response = await fetch(url, {
-      headers: { 'Authorization': API_KEY },
+      headers: { 'Authorization': APP.API_KEY },
     });
     if (response.ok) {
       const data = await response.json();

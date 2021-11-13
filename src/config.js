@@ -1,14 +1,21 @@
 const APP = {
+  API_KEY: '563492ad6f91700001000001647246300ed247b7b6748ac61d528807',
+  PHOTOS_PER_PAGE: 12,
   MAX_PHOTOS_COUNT: 200,
   BREAKPOINTS: {
     mobile: 520,
     tablet: 768,  
-    desktop: 900,
+    desktop: 992,
   },
   COLUMN_COUNT: {
     mobile: 2,
     tablet: 3,
     desktop: 4,
+  },
+  CART_COLUMN_COUNT: {
+    mobile: 1,
+    tablet: 2,
+    desktop: 3,
   },
   SCROLL_Y_BOUND: 800,
   SCROLL_SENSITIVITY: 200,

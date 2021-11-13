@@ -20,7 +20,7 @@ const GalleryItem = ({ photo, addToCart, removeFromCart, isInCart, openModal }) 
 
   return (
     <li 
-      className={'gallery-column__item gallery-item' + (isInCart ? ' gallery-item--in-cart' : '')}
+      className={'gallery-grid__item gallery-item' + (isInCart ? ' gallery-item--in-cart' : '')}
     >
       <div className='gallery-item__image-wrap'>
         <img className='gallery-item__image' src={photo.src.large} alt='Photos provided by Pexels'/>

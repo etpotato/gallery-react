@@ -11,12 +11,12 @@ export default function useMatchMedia (mobileCb, tabletCb, desktopCb) {
   useEffect(() => {
     const mediaQueries = {
       mobile: {
-        query: window.matchMedia(`(max-width: ${APP.BREAKPOINTS.tablet}px)`),
+        query: window.matchMedia(`(max-width: ${APP.BREAKPOINTS.tablet - 1}px)`),
         callback: getCallback(mobileCb),
         init: mobileCb,
       },
       tablet: {
-        query: window.matchMedia(`(min-width: ${APP.BREAKPOINTS.tablet}px) and (max-width: ${APP.BREAKPOINTS.desktop}px)`),
+        query: window.matchMedia(`(min-width: ${APP.BREAKPOINTS.tablet}px) and (max-width: ${APP.BREAKPOINTS.desktop - 1}px)`),
         callback: getCallback(tabletCb),
         init: tabletCb,
       },

@@ -1,11 +1,13 @@
 import { Link } from 'react-router-dom';
 import downloadZip from '../../utils/download';
-import CartGrid from '../CartGrid/CartGrid';
+import GalleryGrid from '../GalleryGrid/GalleryGrid';
+import CartItem from '../CartItem/CartItem';
 import ScrollUpButton from '../ScrollUpButton/ScrollUpButton';
 
 import './cart.scss';
 
 const Cart = ({ cart, setCart, openModal, handleRemoveFromCart }) => {
+
   const handleDownloadAll = async (evt) => {
     evt.preventDefault();
     if (!cart.length) return evt.target.blur(); 
@@ -50,9 +52,18 @@ const Cart = ({ cart, setCart, openModal, handleRemoveFromCart }) => {
     <main className='page__main cart pt-5 pb-5'>
       <div className='container container--main-wrap'>
         { cart.length === 0 && <Link to='/' className='btn btn-primary cart__main-link'>Go to shop</Link> }
-        <CartGrid cart={cart} handleCartItemCheck={handleCartItemCheck} handleRemoveFromCart={handleRemoveFromCart} openModal={openModal} />
-        {
-          cart.length > 0 
+        <GalleryGrid isCart>
+          { cart.map(photo => {
+            return <CartItem
+              key={photo.id}
+              photo={photo}
+              handleCartItemCheck={handleCartItemCheck}
+              handleRemoveFromCart={handleRemoveFromCart}
+              openModal={openModal}
+            />
+          }) }
+        </GalleryGrid>
+        { cart.length > 0 
           && <ul className='cart__controls'>
               <li className='cart__controls-item'>
                 <button className='cart__button cart__button--download-all btn btn-success' onClick={handleDownloadAll} type='button'>Download all</button>

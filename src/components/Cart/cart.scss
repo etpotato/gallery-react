@@ -20,14 +20,14 @@
 }
 
 .cart__controls {
-  margin: 0;
-  padding: 0;
+  margin: 4rem 0 0;
+  padding: 1rem 0 0;
   list-style: none;
 
   @media (min-width: 420px) {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    grid-gap: 1.6rem;
+    grid-gap: 1rem;
   }
 
   @media(min-width: 992px) {
