@@ -5,14 +5,14 @@ import useLocalStorage from './hooks/useLocalStorage';
 
 import Header from './components/Header/Header';
 import Gallery from './components/Gallery/Gallery';
+import Cart from './components/Cart/Cart';
 import Modal from './components/Modal/Modal';
 import Error from './components/Error/Error';
-import Cart from './components/Cart/Cart';
 import Footer from './components/Footer/Footer';
 
-// TODO: logo
-// TODO: scrollup button
-// TODO: infinite scroll in gallery testing
+// TODO: favicon
+// TODO: fadeUp footer
+// TODO: infinite scroll in gallery
 // TODO: redirect to index after download all
 
 const App = () => {

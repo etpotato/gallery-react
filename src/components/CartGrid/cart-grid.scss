@@ -1,0 +1,18 @@
+.cart-grid {
+  display: grid;
+  align-items: start;
+  grid-gap: 12px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.cart-grid__list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.cart-grid__item {
+  margin-bottom: 24px;
+}

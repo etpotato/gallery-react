@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import downloadZip from '../../utils/download';
-import GalleryGrid from '../GalleryGrid/GalleryGrid';
+import CartGrid from '../CartGrid/CartGrid';
 import CartItem from '../CartItem/CartItem';
 import ScrollUpButton from '../ScrollUpButton/ScrollUpButton';
 
@@ -52,7 +52,7 @@ const Cart = ({ cart, setCart, openModal, handleRemoveFromCart }) => {
     <main className='page__main cart pt-5 pb-5'>
       <div className='container container--main-wrap'>
         { cart.length === 0 && <Link to='/' className='btn btn-primary cart__main-link'>Go to shop</Link> }
-        <GalleryGrid isCart>
+        <CartGrid>
           { cart.map(photo => {
             return <CartItem
               key={photo.id}
@@ -62,7 +62,7 @@ const Cart = ({ cart, setCart, openModal, handleRemoveFromCart }) => {
               openModal={openModal}
             />
           }) }
-        </GalleryGrid>
+        </CartGrid>
         { cart.length > 0 
           && <ul className='cart__controls'>
               <li className='cart__controls-item'>

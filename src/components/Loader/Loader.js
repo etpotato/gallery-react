@@ -6,7 +6,7 @@ export default function Loader ({ isLoading, forwardedRef }) {
   
   return ( 
     <div className={`loader pt-4 pb-2${visibleClass}`}>
-      <img className='loader__image' ref={forwardedRef} src={ loader } alt='loading'/>
+      <img className='loader__image' ref={forwardedRef} src={loader} alt='loading'/>
     </div>
   );
 };

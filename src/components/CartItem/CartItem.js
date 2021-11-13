@@ -14,7 +14,7 @@ export default function CartItem ({ photo, handleCartItemCheck, openModal, handl
   };
 
   return (
-    <div className={`gallery-grid__item gallery-grid__item--cart cart-item ${modif}`}>
+    <div className={`gcart-grid__item gallery-grid__item--cart cart-item ${modif}`}>
       <div className='cart-item__image-wrap'>
         <img onClick={() => openModal(photo)} className='cart-item__image' src={ photo.src.large } alt='Photos provided by Pexels'/>
         <button className="cart-item__button btn btn-outline-danger" onClick={handleRemove} type="button">Remove</button>
