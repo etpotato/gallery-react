@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import downloadZip from '../../utils/download';
 import CartGrid from '../CartGrid/CartGrid';
 import CartItem from '../CartItem/CartItem';
@@ -7,12 +7,14 @@ import ScrollUpButton from '../ScrollUpButton/ScrollUpButton';
 import './cart.scss';
 
 const Cart = ({ cart, setCart, openModal, handleRemoveFromCart }) => {
+  const history = useHistory();
 
   const handleDownloadAll = async (evt) => {
     evt.preventDefault();
     if (!cart.length) return evt.target.blur(); 
     await downloadZip(cart);
     setCart([]);
+    history.push('/');
   };
 
   const handleDownloadSelected = (evt) => {
