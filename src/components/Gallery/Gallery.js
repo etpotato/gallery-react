@@ -3,7 +3,6 @@ import Navbar from '../Navbar/Navbar';
 import GalleryGrid from '../GalleryGrid/GalleryGrid';
 import GalleryItem from '../GalleryItem/GalleryItem';
 import Loader from '../Loader/Loader';
-import ScrollUpButton from '../ScrollUpButton/ScrollUpButton';
 
 import './gallery.scss';
 
@@ -56,7 +55,6 @@ export default function Gallery ({ photos, addToCart, removeFromCart, cart, open
               }) }
             </GalleryGrid>
         }
-        <ScrollUpButton />
         <Loader isLoading={isLoading} forwardedRef={loader}/>
       </div>
     </main>

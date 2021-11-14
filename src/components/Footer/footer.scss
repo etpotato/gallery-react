@@ -1,3 +1,17 @@
+.footer {
+  position: fixed;
+  top: 100%;
+  right: 0;
+  left: 0;
+  background-color: #fff;
+  box-shadow: 0 2px 24px rgba(0, 0, 0, 0.2);
+  transition: transform 0.5s ease-out;
+
+  &.show {
+    transform: translateY(-100%);
+  }
+}
+
 .footer__link {
   color: inherit;
   font-weight: 300;

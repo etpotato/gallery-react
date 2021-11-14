@@ -1,6 +1,6 @@
 .scrollup {
-  position: fixed;
-  bottom: 5vh;
+  position: absolute;
+  top: -72px;
   right: 0.75rem;
   display: grid;
   place-content: center;
@@ -27,8 +27,8 @@
     transform: scale(1.1);
   }
 
-  @media (min-width: 1440px) {
-    right: calc((100vw - 1480px) / 2);
+  @media (min-width: 1480px) {
+    right: calc((100vw - 1440px) / 2);
   }
 }
 

@@ -8,29 +8,28 @@ import './gallery-grid.scss';
 export default function GalleryGrid ({ children, handleObserver }) {
   const [columnCount, setColumnCount] = useState(APP.COLUMN_COUNT.desktop);
   const itemsByColumn = separateArray(children, columnCount);
-  const lists = useRef([]);
 
   useMatchMedia(
     () => setColumnCount(APP.COLUMN_COUNT.mobile),
     () => setColumnCount(APP.COLUMN_COUNT.tablet),
     () => setColumnCount(APP.COLUMN_COUNT.desktop),
   );
-  
-  useEffect(() => {
-    const observerCallback = (entries) => {
+
+  const observer = useRef(new IntersectionObserver(
+    (entries, observer) => {
       const isIntersecting = entries.some(entry => entry.isIntersecting);
       if (isIntersecting) {
-        console.log('inters');
         handleObserver.current();
+        entries.forEach(entry => observer.unobserve(entry.target));
       }
-    };
-    const observerOptions = {
+    },
+    {
       rootMargin: '10%',
-    };
-    const observer = new IntersectionObserver(observerCallback, observerOptions);
-    lists.current.length && lists.current.forEach(item => observer.observe(item));
-    
-    return () => observer.disconnect();
+    }
+  ));
+
+  useEffect(() => {
+    return () => observer.current.disconnect();
   }, []);
 
   return (
@@ -39,8 +38,8 @@ export default function GalleryGrid ({ children, handleObserver }) {
         <li key={index + columnCount} className="gallery-grid__column">
           <ul className="gallery-grid__list">
             { column }
-            <li key={'observer' + index} ref={(ref) => lists.current.push(ref)}> </li>
           </ul>
+          <span ref={(ref) => ref && observer.current.observe(ref)} style={{ fontSize: '0' }}> </span>
         </li>
       )) }
     </ul>

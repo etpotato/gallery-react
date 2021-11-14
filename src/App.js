@@ -13,7 +13,6 @@ import Footer from './components/Footer/Footer';
 // TODO: favicon
 // TODO: fadeUp footer
 // TODO: infinite scroll in gallery
-// TODO: redirect to index after download all
 
 const App = () => {
   const [cart, setCart] = useState([]);
@@ -41,17 +40,43 @@ const App = () => {
 
   return (
     <Router>
-      <Header cartCount={cart.length} searchValue={searchValue} setSearchValue={setSearchValue}/>
+      <Header 
+        cartCount={cart.length}
+        searchValue={searchValue}
+        setSearchValue={setSearchValue}
+      />
       <Switch>
         <Route path='/' exact>
-          <Gallery photos={photos} addToCart={addToCart} removeFromCart={removeFromCart} cart={cart} openModal={openModal} searchValue={searchValue} setSearchValue={setSearchValue} isLoading={isLoading} hasNextPage={hasNextPage} setSearchPage={setSearchPage}/>
+          <Gallery
+            photos={photos}
+            addToCart={addToCart}
+            removeFromCart={removeFromCart}
+            cart={cart}
+            openModal={openModal}
+            searchValue={searchValue}
+            setSearchValue={setSearchValue}
+            isLoading={isLoading}
+            hasNextPage={hasNextPage}
+            setSearchPage={setSearchPage}
+          />
         </Route>
         <Route path='/cart'>
-          <Cart cart={cart} setCart={setCart} openModal={openModal} handleRemoveFromCart={removeFromCart}/>
+          <Cart
+            cart={cart}
+            setCart={setCart}
+            openModal={openModal}
+            handleRemoveFromCart={removeFromCart}
+          />
         </Route>
       </Switch>
       <Footer/>
-      { modal.show && <Modal modalPhoto={modal.photo} modalClose={closeModal} addToCart={addToCart} removeFromCart={removeFromCart} cart={cart}/> }
+      { modal.show && <Modal
+                        modalPhoto={modal.photo}
+                        modalClose={closeModal}
+                        addToCart={addToCart}
+                        removeFromCart={removeFromCart}
+                        cart={cart}
+                      /> }
       { error && <Error setError={setError} /> }
     </Router>
   );
