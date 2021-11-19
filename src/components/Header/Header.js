@@ -34,6 +34,15 @@ const Header = ({ cartCount, searchValue, setSearchValue }) => {
     });
   };
 
+  const handleLogoClick = () => {
+    if (!isMainPage) return;
+    setSearchValue('');
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth',
+    });
+  };
+
   useEffect(() => {
     if (cartCount > 0) setActiveCart(true);
     setTimeout(() => setActiveCart(false), BADGE_SCALE_TIME);
@@ -45,7 +54,7 @@ const Header = ({ cartCount, searchValue, setSearchValue }) => {
     <header className={'header pt-3 pb-3' + modif}>
       <div className="container header__container">
         <div className="header__wrap row">
-          <Link to='/' className='header__logo-wrap col-sm-auto' aria-label='To main page'>
+          <Link to='/' onClick={handleLogoClick} className='header__logo-wrap col-sm-auto' aria-label='To main page'>
             <img className='header__logo' src={logo} alt='logo' />
           </Link>
           { isMainPage 
