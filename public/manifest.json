@@ -1,6 +1,6 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "Gallery React",
+  "name": "Browse photos and get your favorite!",
   "icons": [
     {
       "src": "favicon.ico",
