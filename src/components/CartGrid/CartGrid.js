@@ -16,7 +16,10 @@ export default function CartGrid ({ children }) {
   );
 
   return (
-    <ul className="cart-grid" style={{ gridTemplateColumns: `repeat(${columnCount}, 1fr)` }}>
+    <ul
+      className="cart-grid" 
+      style={{ gridTemplateColumns: `repeat(${columnCount}, 1fr)` }}
+    >
       { itemsByColumn.map((column, index) => (
         <li key={index + columnCount} className="cart-grid__column">
           <ul className="cart-grid__list">
