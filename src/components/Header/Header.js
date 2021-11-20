@@ -2,6 +2,7 @@ import { useEffect, useState, useRef } from 'react';
 import { Link, useRouteMatch } from 'react-router-dom';
 import useScrollDirection from '../../hooks/useScrollDirection';
 import usePathToScrollUp from '../../hooks/usePathToScrollUp';
+import APP from '../../config';
 
 import logo from './logo.svg';
 import './header.scss';
@@ -13,7 +14,7 @@ export default function Header ({ cartCount, searchValue, setSearchValue }) {
   const [activeCart, setActiveCart] = useState(false);
   const [modif, setModif] = useState('');
   const [inputValue, setInputValue] = useState('');
-  const isMainPage = useRouteMatch({ path: '/', exact: true });
+  const isMainPage = useRouteMatch({ path: APP.ROOT, exact: true });
   const searchInput = useRef(null);
   usePathToScrollUp();
 
@@ -57,7 +58,7 @@ export default function Header ({ cartCount, searchValue, setSearchValue }) {
       <div className="container header__container">
         <div className="header__wrap row">
           <Link
-            to="/"
+            to={APP.ROOT}
             onClick={handleLogoClick}
             className="header__logo-wrap col-sm-auto"
             aria-label="To main page"
@@ -93,7 +94,7 @@ export default function Header ({ cartCount, searchValue, setSearchValue }) {
           }
           <div className="header__cart-wrap col-sm-auto">
             <Link
-              to="/cart"
+              to={`${APP.ROOT}cart`}
               className="header__cart position-relative"
               aria-label="Your shopping cart"
             >

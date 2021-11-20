@@ -9,8 +9,7 @@ import Cart from './components/Cart/Cart';
 import Modal from './components/Modal/Modal';
 import Error from './components/Error/Error';
 import Footer from './components/Footer/Footer';
-
-// TODO: fadeUp footer
+import APP from './config';
 
 const App = () => {
   const [cart, setCart] = useState([]);
@@ -44,7 +43,7 @@ const App = () => {
         setSearchValue={setSearchValue}
       />
       <Switch>
-        <Route path='/' exact>
+        <Route path={APP.ROOT} exact>
           <Gallery
             photos={photos}
             addToCart={addToCart}
@@ -58,7 +57,7 @@ const App = () => {
             setSearchPage={setSearchPage}
           />
         </Route>
-        <Route path='/cart'>
+        <Route path={`${APP.ROOT}cart`}>
           <Cart
             cart={cart}
             setCart={setCart}
