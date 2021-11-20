@@ -9,12 +9,11 @@ export default function CartItem ({ photo, handleCartItemCheck, openModal, handl
   const handleRemove = evt => {
     evt.preventDefault();
     setModif(HIDE_CLASS);
-    setTimeout(() => handleRemoveFromCart(photo.id), ANIMATION_DURATION
-    );
+    setTimeout(() => handleRemoveFromCart(photo.id), ANIMATION_DURATION);
   };
 
   return (
-    <div className={`gcart-grid__item gallery-grid__item--cart cart-item ${modif}`}>
+    <li className={`cart-grid__item gallery-grid__item--cart cart-item ${modif}`}>
       <div className="cart-item__image-wrap">
         <img
           onClick={() => openModal(photo)}
@@ -29,7 +28,7 @@ export default function CartItem ({ photo, handleCartItemCheck, openModal, handl
         >Remove</button>
       </div>
       <p className="cart-item__text cart-item__photographer">
-        Photographer:
+        Photographer:&ensp;
         <a
           className="cart-item__link"
           href={photo.photographer_url}
@@ -47,6 +46,6 @@ export default function CartItem ({ photo, handleCartItemCheck, openModal, handl
         <span className="cart-item__checkbox-check"></span>
         <span className="visually-hidden">Choose this photo</span>
       </label>
-    </div>
+    </li>
   );
 }

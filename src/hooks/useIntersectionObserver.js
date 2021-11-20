@@ -2,10 +2,10 @@ import { useRef, useEffect, useMemo } from 'react';
 
 export default function useIntersectionObserver (isLoading, hasNextPage, observerCallback) {  
   const callbackRef = useRef(() => observerCallback());
-  
+
   const observer = useMemo(() =>
     new IntersectionObserver(
-      (entries) => {
+      entries => {
         const isIntersecting = entries.some(entry => entry.isIntersecting);
         if (isIntersecting) {
           callbackRef.current();
@@ -24,6 +24,7 @@ export default function useIntersectionObserver (isLoading, hasNextPage, observe
     }
   }, [isLoading, hasNextPage, observerCallback]);
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => () => observer.disconnect(), []);
 
   return observer;

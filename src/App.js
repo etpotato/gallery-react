@@ -20,15 +20,15 @@ const App = () => {
   const { isLoading, photos, hasNextPage, error, setError } = useFetchPhotos(searchValue, searchPage, setSearchPage);
   useLocalStorage(cart, setCart);
 
-  const addToCart = (photo) => {
+  const addToCart = photo => {
     setCart(state => [ ...state, { ...photo, checked: false }]);
   };
 
-  const removeFromCart = (id) => {
+  const removeFromCart = id => {
     setCart(state => state.filter(cartPhoto => cartPhoto.id !== id));
   };
 
-  const openModal = (photo) => {
+  const openModal = photo => {
     setModal({show: true, photo: photo});
   };
 
@@ -68,13 +68,14 @@ const App = () => {
         </Route>
       </Switch>
       <Footer/>
-      { modal.show && <Modal
-                        modalPhoto={modal.photo}
-                        modalClose={closeModal}
-                        addToCart={addToCart}
-                        removeFromCart={removeFromCart}
-                        cart={cart}
-                      /> }
+      { modal.show
+        && <Modal
+              modalPhoto={modal.photo}
+              modalClose={closeModal}
+              addToCart={addToCart}
+              removeFromCart={removeFromCart}
+              cart={cart}
+            /> }
       { error && <Error setError={setError} /> }
     </Router>
   );

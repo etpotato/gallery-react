@@ -9,7 +9,7 @@ export default function useFetchPhotos(keyword, page, setPage) {
   const [hasNextPage, setHasNextPage] = useState(true);
   const [error, setError] = useState(false);
 
-  const onSuccess = (data) => {
+  const onSuccess = data => {
     setPhotos(photos => getArrayOfUnique([...photos, ...data.photos]));
     setHasNextPage(Boolean(data.next_page));
     setIsLoading(false);
@@ -27,6 +27,7 @@ export default function useFetchPhotos(keyword, page, setPage) {
     setIsLoading(true);
     
     fetchPhotos(keyword, page, onSuccess, onError);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [keyword, page]);
 
   return { isLoading, photos, hasNextPage, error, setError };

@@ -10,7 +10,6 @@ const getSearchUrl = (keyword, page) => {
 
 export default async function fetchPhotos (keyword, page = 1, onSuccess, onError) {
   const url = keyword ? getSearchUrl(keyword, page) : getDefaultUrl(page);
-  console.log('fetch');
   try {
     const response = await fetch(url, {
       headers: { 'Authorization': APP.API_KEY },

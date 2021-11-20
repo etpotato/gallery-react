@@ -1,8 +1,8 @@
 import { useEffect } from 'react';
 import APP from '../config';
 
-const getCallback = (cb) => {
-  return (evt) => {
+const getCallback = cb => {
+  return evt => {
     if (evt.matches) cb();
   };
 };
