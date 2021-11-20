@@ -10,9 +10,7 @@ import Modal from './components/Modal/Modal';
 import Error from './components/Error/Error';
 import Footer from './components/Footer/Footer';
 
-// TODO: favicon
 // TODO: fadeUp footer
-// TODO: infinite scroll in gallery
 
 const App = () => {
   const [cart, setCart] = useState([]);

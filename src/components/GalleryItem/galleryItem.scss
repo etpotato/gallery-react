@@ -1,8 +1,10 @@
 .gallery-item {
   position: relative;
   border-radius: 4px;
+  opacity: 1;
+  transform: translateY(0);
   overflow: hidden;
-  animation: fadeInUp 0.4s ease-out;
+  transition: 0.3s opacity ease-out, 0.3s transform ease-out;
 
   @media (hover: hover) {
     &:hover,
@@ -24,8 +26,13 @@
     }
   }
 
-  &--in-cart .gallery-item__image-wrap::before {
+  &.in-cart .gallery-item__image-wrap::before {
     opacity: 1;
+  }
+
+  &.loading {
+    opacity: 0;
+    transform: translateY(25%);
   }
 }
 
@@ -112,16 +119,5 @@
     &:active {
       transform: translate(-50%, -50%) scale(1);
     }
-  }
-}
-
-@keyframes fadeInUp {
-  from {
-    transform: translateY(25%);
-    opacity: 0.3;
-  }
-  to {
-    transform: translateY(0);
-    opacity: 1;
   }
 }
