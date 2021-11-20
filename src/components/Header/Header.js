@@ -1,4 +1,4 @@
-import { useEffect, useState} from 'react';
+import { useEffect, useState, useRef } from 'react';
 import { Link, useRouteMatch } from 'react-router-dom';
 import useScrollDirection from '../../hooks/useScrollDirection';
 import usePathToScrollUp from '../../hooks/usePathToScrollUp';
@@ -14,6 +14,7 @@ const Header = ({ cartCount, searchValue, setSearchValue }) => {
   const [modif, setModif] = useState('');
   const [inputValue, setInputValue] = useState('');
   const isMainPage = useRouteMatch({ path: '/', exact: true });
+  const searchInput = useRef(null);
   usePathToScrollUp();
 
   useScrollDirection(
@@ -27,6 +28,7 @@ const Header = ({ cartCount, searchValue, setSearchValue }) => {
 
   const handleSubmit = (evt) => {
     evt.preventDefault();
+    searchInput.current && searchInput.current.blur();
     setSearchValue(inputValue);
     window.scrollTo({
       top: 0,
@@ -59,7 +61,7 @@ const Header = ({ cartCount, searchValue, setSearchValue }) => {
           </Link>
           { isMainPage 
             ? <form onSubmit={handleSubmit} className='d-flex col header__text'>
-                <input value={inputValue} onChange={handleChange} className='form-control me-2' type='search' placeholder='Search' aria-label='Search'></input>
+                <input value={inputValue} onChange={handleChange} ref={searchInput} className='form-control me-2' type='search' placeholder='Search' aria-label='Search'></input>
                 <button className='btn btn-outline-success' type='submit'>Search</button>
               </form>
             : <p className='col header__text lead text-center mb-0'>
