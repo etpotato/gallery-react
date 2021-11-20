@@ -1,0 +1,28 @@
+{
+  "files": {
+    "main.css": "/gallery-react/static/css/main.98a9fc8c.chunk.css",
+    "main.js": "/gallery-react/static/js/main.32d62d57.chunk.js",
+    "main.js.map": "/gallery-react/static/js/main.32d62d57.chunk.js.map",
+    "runtime-main.js": "/gallery-react/static/js/runtime-main.7f29c65d.js",
+    "runtime-main.js.map": "/gallery-react/static/js/runtime-main.7f29c65d.js.map",
+    "static/js/2.da37597e.chunk.js": "/gallery-react/static/js/2.da37597e.chunk.js",
+    "static/js/2.da37597e.chunk.js.map": "/gallery-react/static/js/2.da37597e.chunk.js.map",
+    "static/js/3.21c82f5b.chunk.js": "/gallery-react/static/js/3.21c82f5b.chunk.js",
+    "static/js/3.21c82f5b.chunk.js.map": "/gallery-react/static/js/3.21c82f5b.chunk.js.map",
+    "index.html": "/gallery-react/index.html",
+    "static/css/main.98a9fc8c.chunk.css.map": "/gallery-react/static/css/main.98a9fc8c.chunk.css.map",
+    "static/js/2.da37597e.chunk.js.LICENSE.txt": "/gallery-react/static/js/2.da37597e.chunk.js.LICENSE.txt",
+    "static/media/galleryItem.scss": "/gallery-react/static/media/cart-plus.7abc02ab.svg",
+    "static/media/header.scss": "/gallery-react/static/media/cart.e878f89c.svg",
+    "static/media/cart.scss": "/gallery-react/static/media/download-all.8ca34383.svg",
+    "static/media/cartItem.scss": "/gallery-react/static/media/check.823e085f.svg",
+    "static/media/loader.61d9b192.svg": "/gallery-react/static/media/loader.61d9b192.svg",
+    "static/media/logo.88cb48a0.svg": "/gallery-react/static/media/logo.88cb48a0.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.7f29c65d.js",
+    "static/js/2.da37597e.chunk.js",
+    "static/css/main.98a9fc8c.chunk.css",
+    "static/js/main.32d62d57.chunk.js"
+  ]
+}
