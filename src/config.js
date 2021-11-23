@@ -19,7 +19,6 @@ const APP = {
     desktop: 3,
   },
   SCROLL_Y_BOUND: 800,
-  SCROLL_SENSITIVITY: 200,
   LOCAL_STORAGE_NAME: 'photo_store_cart',
   TAGS: [
     'Technology',

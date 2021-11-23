@@ -7,7 +7,7 @@ import './gallery.scss';
 
 export default function Gallery ({ photos, addToCart, removeFromCart, cart, openModal, searchValue, setSearchValue, isLoading, hasNextPage, setSearchPage }) {
   return (
-    <main className='page__main gallery pt-4'>
+    <main className='page__main gallery'>
       <div className='container container--main-wrap'>
         <h1 className='lead text-center mb-3'>Browse photos and get your favorite!</h1>
         <Navbar searchValue={searchValue} setSearchValue={setSearchValue}/>

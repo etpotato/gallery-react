@@ -46,7 +46,7 @@ export default function Cart ({ cart, setCart, openModal, handleRemoveFromCart }
   };
 
   return (
-    <main className="page__main cart pt-5">
+    <main className="page__main cart">
       <div className="container container--main-wrap">
         { cart.length === 0 
           && <Link
