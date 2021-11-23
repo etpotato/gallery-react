@@ -27,8 +27,8 @@
     transform: scale(1.1);
   }
 
-  @media (min-width: 1480px) {
-    right: calc((100vw - 1440px) / 2);
+  @media (min-width: 1280px) {
+    right: calc((100vw - 1260px) / 2);
   }
 }
 

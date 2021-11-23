@@ -1,3 +1,11 @@
+$container-max-widths: (
+  sm: 100%,
+  md: 100%,
+  lg: 880px,
+  xl: 1140px,
+  xxl: 1140px
+);
+
 @import './node_modules/bootstrap/scss/bootstrap.scss';
 
 .page {
