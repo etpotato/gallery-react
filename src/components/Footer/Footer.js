@@ -39,9 +39,11 @@ export default function Footer () {
           </a>
           <p className="footer__copy d-sm-block col">copyleft 2021</p>
           <a className="footer__link col-sm-auto"
-            href="mailto:mareev.pv@gmail.com"
+            href="https://pavelmareev.dev/"
+            target="_blank"
+            rel="noreferrer"
           >
-            mareev.pv@gmail.com
+            pavelmareev.dev
           </a>
         </div>
       </div>
