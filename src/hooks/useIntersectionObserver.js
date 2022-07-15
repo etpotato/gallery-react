@@ -1,6 +1,6 @@
 import { useRef, useEffect, useMemo } from 'react';
 
-export default function useIntersectionObserver (isLoading, hasNextPage, observerCallback) {  
+export default function useIntersectionObserver (isLoading, hasNextPage, observerCallback) {
   const callbackRef = useRef(() => observerCallback());
 
   const observer = useMemo(() =>
@@ -15,7 +15,7 @@ export default function useIntersectionObserver (isLoading, hasNextPage, observe
       rootMargin: '10%',
     }), []
   );
-  
+
   useEffect(() => {
     if (isLoading || !hasNextPage) {
       callbackRef.current = () => false;

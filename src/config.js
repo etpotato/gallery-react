@@ -1,11 +1,9 @@
 const APP = {
-  ROOT: '/gallery-react/',
-  API_KEY: '563492ad6f91700001000001647246300ed247b7b6748ac61d528807',
   PHOTOS_PER_PAGE: 12,
   MAX_PHOTOS_COUNT: Number.POSITIVE_INFINITY,
   BREAKPOINTS: {
     mobile: 520,
-    tablet: 768,  
+    tablet: 768,
     desktop: 992,
   },
   COLUMN_COUNT: {

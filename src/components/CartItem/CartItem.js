@@ -18,7 +18,7 @@ export default function CartItem ({ photo, handleCartItemCheck, openModal, handl
         <img
           onClick={() => openModal(photo)}
           className="cart-item__image"
-          src={ photo.src.large2x }
+          src={ photo.urls.regular }
           alt="Photos provided by Pexels"
         />
         <button
@@ -31,10 +31,10 @@ export default function CartItem ({ photo, handleCartItemCheck, openModal, handl
         Photographer:&ensp;
         <a
           className="cart-item__link"
-          href={photo.photographer_url}
+          href={photo.user.links.html}
           target="_blank"
           rel="noreferrer"
-        >{ photo.photographer }</a>
+        >{ photo.user.name }</a>
       </p>
       <label className="cart-item__checkbox">
         <input

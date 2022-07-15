@@ -1,6 +1,6 @@
 import JSZip from 'jszip';
 
-const download = (blob, name='photo_cart') => {
+const download = ({ blob, name='photo_cart' }) => {
   const url = URL.createObjectURL(blob);
   const link = document.createElement('a');
   link.download = name;
@@ -11,21 +11,22 @@ const download = (blob, name='photo_cart') => {
   link.remove();
 };
 
-const downloadZip = async (cart) => {
-  if (!cart.length) return;
-  const zip = new JSZip();
-  const downloadPromises = cart.map(async (item) => {
-    const response = await fetch(item.src.large2x);
-    const imageBlob = response.blob();
-    return zip.file(`${item.photographer}.jpeg`, imageBlob, {binary: true});
-  });
-  
+const downloadZip = async (items) => {
   try {
+    if (!items.length) return;
+    const zip = new JSZip();
+
+    const downloadPromises = items.map(async ({ url, name }) => {
+      const response = await fetch(url);
+      const imageBlob = response.blob();
+      return zip.file(`${name}.jpeg`, imageBlob, {binary: true});
+    });
+
     await Promise.all(downloadPromises);
     const content = await zip.generateAsync({type:'blob'});
-    download(content);
+    download({blob: content});
   } catch(err) {
-    console.log(err);
+    console.error(err);
   }
 };
 

@@ -5,7 +5,7 @@ const ANIMATION_TIME = 300;
 
 export default function Modal ({ modalPhoto, modalClose, addToCart, removeFromCart, cart }) {
   const [imageLoaded, setImageLoaded] = useState(false);
-  
+
   const isInCart = cart.some(cartPhoto => cartPhoto.id === modalPhoto.id);
 
   const handleCloseClick = evt => {
@@ -25,7 +25,7 @@ export default function Modal ({ modalPhoto, modalClose, addToCart, removeFromCa
     removeFromCart(modalPhoto.id);
     evt.target.blur();
   };
-  
+
   useEffect(() => {
     const handleEsc = evt => {
       if (evt.key === 'Escape' || evt.key === 'Esc') {
@@ -39,7 +39,7 @@ export default function Modal ({ modalPhoto, modalClose, addToCart, removeFromCa
 
   return (
     <div
-      className={'modal fade' + ((imageLoaded) ? ' show' : '')} 
+      className={'modal fade' + ((imageLoaded) ? ' show' : '')}
       role="dialog"
       aria-hidden="true"
     >
@@ -54,13 +54,13 @@ export default function Modal ({ modalPhoto, modalClose, addToCart, removeFromCa
         <div className="modal-content">
           <div className="modal-header modal__header">
             <h5 className="modal-title h6 modal__title">
-              Photographer:&ensp;
+              Author:&ensp;
               <a
                 className="modal__link"
-                href={modalPhoto.photographer_url}
+                href={modalPhoto.user.links.html}
                 target="_blank"
                 rel="noreferrer"
-              >{modalPhoto.photographer}</a>
+              >{modalPhoto.user.name}</a>
             </h5>
             <button
               onClick={handleCloseClick}
@@ -74,7 +74,7 @@ export default function Modal ({ modalPhoto, modalClose, addToCart, removeFromCa
               <img
                 onLoad={() => setImageLoaded(true)}
                 className="modal__image"
-                src={modalPhoto?.src.large2x}
+                src={modalPhoto?.urls.full}
                 alt="Photos provided by Pexels"
               />
             </div>
@@ -85,7 +85,7 @@ export default function Modal ({ modalPhoto, modalClose, addToCart, removeFromCa
               className="btn btn-secondary"
               type="button"
             >Close</button>
-            { isInCart 
+            { isInCart
               ? <button
                   onClick={handleRemoveFromCart}
                   className="modal__addtocart btn btn-danger"

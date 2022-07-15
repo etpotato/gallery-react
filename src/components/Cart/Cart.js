@@ -3,8 +3,6 @@ import downloadZip from '../../utils/download';
 import CartGrid from '../CartGrid/CartGrid';
 import CartItem from '../CartItem/CartItem';
 
-import APP from '../../config';
-
 import './cart.scss';
 
 export default function Cart ({ cart, setCart, openModal, handleRemoveFromCart }) {
@@ -12,16 +10,20 @@ export default function Cart ({ cart, setCart, openModal, handleRemoveFromCart }
 
   const handleDownloadAll = async evt => {
     evt.preventDefault();
-    if (!cart.length) return evt.target.blur(); 
-    await downloadZip(cart);
+    if (!cart.length) return evt.target.blur();
+    const downloadItems = cart.map((item) => ({
+      url: item.urls.full,
+      name: item.user.name,
+    }));
+    await downloadZip(downloadItems);
     setCart([]);
-    history.push(APP.ROOT);
+    history.push('/');
   };
 
   const handleDownloadSelected = evt => {
     evt.preventDefault();
     const selected = cart.filter(item => item.checked);
-    if (!selected.length) return evt.target.blur(); 
+    if (!selected.length) return evt.target.blur();
     downloadZip(selected);
   }
 
@@ -48,9 +50,9 @@ export default function Cart ({ cart, setCart, openModal, handleRemoveFromCart }
   return (
     <main className="page__main cart">
       <div className="container container--main-wrap">
-        { cart.length === 0 
+        { cart.length === 0
           && <Link
-              to={APP.ROOT}
+              to="/"
               className="btn btn-primary cart__main-link">
                 Go to shop
              </Link>
@@ -67,7 +69,7 @@ export default function Cart ({ cart, setCart, openModal, handleRemoveFromCart }
             ))
           }
         </CartGrid>
-        { cart.length > 0 
+        { cart.length > 0
           && <ul className="cart__controls">
               <li className="cart__controls-item">
                 <button

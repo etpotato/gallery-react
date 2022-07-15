@@ -31,11 +31,11 @@ export default function Footer () {
         <ScrollUpButton />
         <div className="row justify-content-between">
           <a className="footer__link col-sm-auto"
-            href="https://www.pexels.com"
+            href="https://unsplash.com/"
             target="_blank"
             rel="noreferrer"
           >
-            Photos provided by Pexels
+            Photos provided by Unsplash
           </a>
           <p className="footer__copy d-sm-block col">copyleft 2021</p>
           <a className="footer__link col-sm-auto"

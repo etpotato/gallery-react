@@ -9,7 +9,6 @@ import Cart from './components/Cart/Cart';
 import Modal from './components/Modal/Modal';
 import Error from './components/Error/Error';
 import Footer from './components/Footer/Footer';
-import APP from './config';
 
 const App = () => {
   const [cart, setCart] = useState([]);
@@ -37,13 +36,13 @@ const App = () => {
 
   return (
     <Router>
-      <Header 
+      <Header
         cartCount={cart.length}
         searchValue={searchValue}
         setSearchValue={setSearchValue}
       />
       <Switch>
-        <Route path={APP.ROOT} exact>
+        <Route path="/" exact>
           <Gallery
             photos={photos}
             addToCart={addToCart}
@@ -57,7 +56,7 @@ const App = () => {
             setSearchPage={setSearchPage}
           />
         </Route>
-        <Route path={`${APP.ROOT}cart`}>
+        <Route path="/cart">
           <Cart
             cart={cart}
             setCart={setCart}

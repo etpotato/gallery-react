@@ -23,36 +23,36 @@ export default function GalleryItem ({ photo, addToCart, removeFromCart, isInCar
   };
 
   return (
-    <li 
+    <li
       className={'gallery-grid__item gallery-item' + loadingClass + inCartClass}
     >
       <div className='gallery-item__image-wrap'>
-        <img 
+        <img
           onLoad={() => setLoadingClass('')}
           className='gallery-item__image'
-          src={photo.src.large}
+          src={photo.urls.regular}
           alt='Photos provided by Pexels'
         />
       </div>
       <a className='gallery-item__link' onClick={handleLinkClick} href='/'>
         <span className='visually-hidden'>Open in full size</span>
       </a>
-      {isInCart 
-      ? ( <button 
-            onClick={handleRemoveFromCart} 
+      {isInCart
+      ? ( <button
+            onClick={handleRemoveFromCart}
             className='gallery-item__addtocart gallery-item__addtocart--minus'
             type='button'
           >
             <span className='visually-hidden'>Add to cart</span>
           </button>
-        ) 
-      : ( <button 
+        )
+      : ( <button
             onClick={handleAddToCart}
             className='gallery-item__addtocart'
             type='button'
           >
             <span className='visually-hidden'>Add to cart</span>
-          </button> 
+          </button>
         )
       }
     </li>
