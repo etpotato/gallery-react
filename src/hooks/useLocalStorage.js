@@ -4,7 +4,7 @@ import APP from '../config';
 export default function useLocalStorage(data, setData) {
   useEffect(() => {
     const dataFromStorage = JSON.parse(localStorage.getItem(APP.LOCAL_STORAGE_NAME));
-    setData(dataFromStorage);
+    dataFromStorage && setData(dataFromStorage);
   }, [setData]);
 
   useEffect(() => {
