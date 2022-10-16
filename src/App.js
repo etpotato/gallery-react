@@ -1,5 +1,5 @@
-import { useState } from 'react';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import { useState, useEffect, useCallback } from 'react';
+import { Switch, Route, useLocation, useParams, useHistory } from 'react-router-dom';
 import useFetchPhotos from './hooks/useFetchPhotos';
 import useLocalStorage from './hooks/useLocalStorage';
 
@@ -9,14 +9,37 @@ import Cart from './components/Cart/Cart';
 import Modal from './components/Modal/Modal';
 import Error from './components/Error/Error';
 import Footer from './components/Footer/Footer';
+import useSearchParam from './hooks/useSearchParam';
+import useSetSearchParam from './hooks/useSetSearchParam';
 
 const App = () => {
   const [cart, setCart] = useState([]);
-  const [searchValue, setSearchValue] = useState('');
-  const [searchPage, setSearchPage] = useState(1);
   const [modal, setModal] = useState({show: false, photo: {}});
-  const { isLoading, photos, hasNextPage, error, setError } = useFetchPhotos(searchValue, searchPage, setSearchPage);
+  const [page, setPage] = useState(1);
+  const searchValue = useSearchParam('query', '');
+  const setQuery = useSetSearchParam('query');
+  const searchPage = useSearchParam('page', '1');
+  const setSearchPage = useSetSearchParam('page');
+
+  useEffect(() => {
+    // read url query params here
+    console.log(searchValue);
+  }, [searchValue]);
+
+  const setSearchPageQ = useCallback(() => {
+    try {
+      const newValue = parseInt(searchPage);
+      setSearchPage(newValue + 1);
+    } catch(err) {
+      console.log(err);
+    }
+  }, [searchPage, setSearchPage]);
+
+
+  const { isLoading, photos, hasNextPage, error, setError } = useFetchPhotos(searchValue, page, setPage);
   useLocalStorage(cart, setCart);
+
+  const setSearchValue = (value) => setQuery(value);
 
   const addToCart = photo => {
     setCart(state => [ ...state, { ...photo, checked: false }]);
@@ -35,14 +58,15 @@ const App = () => {
   };
 
   return (
-    <Router>
+    <>
       <Header
         cartCount={cart.length}
         searchValue={searchValue}
         setSearchValue={setSearchValue}
       />
+      <button style={{display: 'block', paddingTop: '100px'}} onClick={() => {}}>set search</button>
       <Switch>
-        <Route path="/" exact>
+        <Route path={['/', '/search']} exact>
           <Gallery
             photos={photos}
             addToCart={addToCart}
@@ -53,7 +77,7 @@ const App = () => {
             setSearchValue={setSearchValue}
             isLoading={isLoading}
             hasNextPage={hasNextPage}
-            setSearchPage={setSearchPage}
+            setSearchPage={setPage}
           />
         </Route>
         <Route path="/cart">
@@ -75,7 +99,7 @@ const App = () => {
               cart={cart}
             /> }
       { error && <Error setError={setError} /> }
-    </Router>
+    </>
   );
 }
 

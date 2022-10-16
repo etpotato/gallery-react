@@ -3,7 +3,7 @@ import fetchPhotos from '../utils/api';
 import { getArrayOfUnique } from '../utils/helpers';
 import APP from '../config';
 
-export default function useFetchPhotos(keyword, page, setPage) {
+export default function useFetchPhotos(query, page, setPage) {
   const [isLoading, setIsLoading] = useState(false);
   const [photos, setPhotos] = useState([]);
   const [hasNextPage, setHasNextPage] = useState(true);
@@ -20,15 +20,15 @@ export default function useFetchPhotos(keyword, page, setPage) {
   useEffect(() => {
     setPhotos([]);
     setPage(1);
-  }, [keyword, setPage]);
+  }, [query, setPage]);
 
   useEffect(() => {
     if (photos.length >= APP.MAX_PHOTOS_COUNT) return;
     setIsLoading(true);
-
-    fetchPhotos(keyword, page, onSuccess, onError);
+    console.log('fetching for', 'word', query, 'page', page);
+    fetchPhotos(query, page, onSuccess, onError);
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [keyword, page]);
+  }, [query, page]);
 
   return { isLoading, photos, hasNextPage, error, setError };
 };
