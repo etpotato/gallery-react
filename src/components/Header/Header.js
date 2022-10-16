@@ -13,7 +13,8 @@ export default function Header ({ cartCount, searchValue, setSearchValue }) {
   const [activeCart, setActiveCart] = useState(false);
   const [modif, setModif] = useState('');
   const [inputValue, setInputValue] = useState('');
-  const isMainPage = useRouteMatch({ path: '/', exact: true });
+  const isMainPage = useRouteMatch({ path: ['/', '/search'], exact: true });
+  const isCartPage = useRouteMatch({ path: '/cart', exact: true });
   const searchInput = useRef(null);
   usePathToScrollUp();
 
@@ -87,9 +88,13 @@ export default function Header ({ cartCount, searchValue, setSearchValue }) {
                   type="submit"
                 >Search</button>
               </form>
-            : <p className="col header__text lead text-center mb-0">
+            : null
+          }
+          { isCartPage
+            ? <p className="col header__text lead text-center mb-0">
                 { cartCount > 0 ? 'Your selected photos' : 'Your cart is empty' }
               </p>
+            : null
           }
           <div className="header__cart-wrap col-sm-auto">
             <Link
