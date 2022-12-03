@@ -3,7 +3,7 @@ import fetchPhotos from '../utils/api';
 import { getArrayOfUnique } from '../utils/helpers';
 import APP from '../config';
 
-export default function useFetchPhotos(query, page, setPage) {
+export default function useFetchPhotos(query, page) {
   const [isLoading, setIsLoading] = useState(false);
   const [photos, setPhotos] = useState([]);
   const [hasNextPage, setHasNextPage] = useState(true);
@@ -19,8 +19,7 @@ export default function useFetchPhotos(query, page, setPage) {
 
   useEffect(() => {
     setPhotos([]);
-    setPage(1);
-  }, [query, setPage]);
+  }, [query]);
 
   useEffect(() => {
     if (photos.length >= APP.MAX_PHOTOS_COUNT) return;

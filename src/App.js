@@ -15,7 +15,6 @@ import useSetSearchParam from './hooks/useSetSearchParam';
 const App = () => {
   const [cart, setCart] = useState([]);
   const [modal, setModal] = useState({show: false, photo: {}});
-  const [page, setPage] = useState(1);
   const searchValue = useSearchParam('query', '');
   const setQuery = useSetSearchParam('query');
   const searchPage = useSearchParam('page', '1');
@@ -26,20 +25,32 @@ const App = () => {
     console.log(searchValue);
   }, [searchValue]);
 
-  const setSearchPageQ = useCallback(() => {
-    try {
-      const newValue = parseInt(searchPage);
-      setSearchPage(newValue + 1);
-    } catch(err) {
-      console.log(err);
-    }
-  }, [searchPage, setSearchPage]);
+  // const setSearchPageQ = useCallback(() => {
+  //   try {
+  //     const newValue = parseInt(searchPage);
+  //     setSearchPage(newValue + 1);
+  //   } catch(err) {
+  //     console.log(err);
+  //   }
+  // }, [searchPage, setSearchPage]);
 
-
-  const { isLoading, photos, hasNextPage, error, setError } = useFetchPhotos(searchValue, page, setPage);
+  const { isLoading, photos, hasNextPage, error, setError } = useFetchPhotos(searchValue, searchPage);
   useLocalStorage(cart, setCart);
 
-  const setSearchValue = (value) => setQuery(value);
+  const observerCallback = useCallback(() => {
+    console.log('isLoading', isLoading);
+    console.log('hasNextPage', hasNextPage);
+    if (!isLoading && hasNextPage && !error) {
+      const oldValue = parseInt(searchPage, 10);
+      setSearchPage(oldValue + 1);
+      console.log('set page', oldValue + 1);
+    }
+  }, [isLoading, hasNextPage, searchPage, setSearchPage, error]);
+
+  const setSearchValue = (value) => {
+    setQuery(value);
+    setSearchPage(1);
+  };
 
   const addToCart = photo => {
     setCart(state => [ ...state, { ...photo, checked: false }]);
@@ -77,7 +88,7 @@ const App = () => {
             setSearchValue={setSearchValue}
             isLoading={isLoading}
             hasNextPage={hasNextPage}
-            setSearchPage={setPage}
+            observerCallback={observerCallback}
           />
         </Route>
         <Route path="/cart">

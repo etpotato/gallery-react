@@ -5,18 +5,16 @@ import Loader from '../Loader/Loader';
 
 import './gallery.scss';
 
-export default function Gallery ({ photos, addToCart, removeFromCart, cart, openModal, searchValue, setSearchValue, isLoading, hasNextPage, setSearchPage }) {
+export default function Gallery ({ photos, addToCart, removeFromCart, cart, openModal, searchValue, setSearchValue, isLoading, observerCallback }) {
   return (
     <main className='page__main gallery'>
       <div className='container container--main-wrap'>
         <h1 className='lead text-center mb-3'>Browse photos and get your favorite!</h1>
         <Navbar searchValue={searchValue} setSearchValue={setSearchValue}/>
-        { (!photos.length && !isLoading) 
+        { (!photos.length && !isLoading)
           ? <p className='gallery__noresult lead'>No results &#9785;</p>
-          : <GalleryGrid 
-              isLoading={isLoading}
-              hasNextPage={hasNextPage}
-              setSearchPage={setSearchPage}
+          : <GalleryGrid
+              observerCallback={observerCallback}
             >
               { photos.map(photo => {
                 const isInCart = cart.some(item => item.id === photo.id);
