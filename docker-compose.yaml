@@ -1,0 +1,15 @@
+version: "3.9"
+
+services:
+  gallery-react:
+    image: gallery-react:latest
+    deploy:
+      restart_policy:
+        condition: on-failure
+        delay: 3s
+        max_attempts: 5
+        window: 30s
+    ports:
+      - "127.0.0.1:5001:8080"
+    environment:
+      PORT: 8080
