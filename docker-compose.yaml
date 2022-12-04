@@ -9,7 +9,9 @@ services:
         delay: 3s
         max_attempts: 5
         window: 30s
+      update_config:
+        order: start-first
     ports:
-      - "127.0.0.1:5001:8080"
+      - "5001:8080"
     environment:
       PORT: 8080
