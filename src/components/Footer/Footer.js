@@ -37,13 +37,13 @@ export default function Footer () {
           >
             Photos provided by Unsplash
           </a>
-          <p className="footer__copy d-sm-block col">copyleft 2021</p>
+          <p className="footer__copy d-sm-block col">copyleft 2022</p>
           <a className="footer__link col-sm-auto"
-            href="https://pavelmareev.dev/"
+            href="https://etpotato.com/"
             target="_blank"
             rel="noreferrer"
           >
-            pavelmareev.dev
+            etpotato.com
           </a>
         </div>
       </div>
