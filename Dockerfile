@@ -17,8 +17,6 @@ WORKDIR /app
 
 COPY --from=builder /app ./
 
-RUN npm install pm2 -g
-
 ENV PORT=8080
 
-CMD ["pm2-runtime", "ecosystem.config.js"]
+CMD ["node", "./index.js"]
