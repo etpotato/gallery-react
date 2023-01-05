@@ -1,22 +1,11 @@
-FROM node:16.14.0-alpine as builder
+FROM node:16.19.0-alpine
 
 WORKDIR /app
 
-COPY package*.json ./
+COPY /build ./build
 
-RUN npm ci
+COPY /server-build/server.bundle.js ./
 
-COPY . .
+COPY /.env ./
 
-RUN npm run build
-
-
-FROM node:16.14.0-alpine
-
-WORKDIR /app
-
-COPY --from=builder /app ./
-
-ENV PORT=8080
-
-CMD ["node", "./index.js"]
+CMD ["node", "./server.bundle.js"]

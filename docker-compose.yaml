@@ -2,7 +2,9 @@ version: "3.9"
 
 services:
   gallery-react:
-    image: gallery-react:latest
+    build:
+      context: .
+      dockerfile: Dockerfile
     deploy:
       restart_policy:
         condition: on-failure
