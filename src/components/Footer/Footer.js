@@ -39,11 +39,11 @@ export default function Footer () {
           </a>
           <p className="footer__copy d-sm-block col">copyleft 2023</p>
           <a className="footer__link col-sm-auto"
-            href="https://etpotato.com/"
+            href="https://etpotato.dev/"
             target="_blank"
             rel="noreferrer"
           >
-            etpotato.com
+            etpotato.dev
           </a>
         </div>
       </div>

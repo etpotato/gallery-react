@@ -1,4 +1,4 @@
-[gallery-react.etpotato.com](https://gallery-react.etpotato.com/)
+[gallery-react.etpotato.dev](https://gallery-react.etpotato.dev/)
 
 node v16.19.0
 
